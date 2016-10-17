@@ -1,8 +1,12 @@
 package seleniumPOC;
 
 import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.nio.file.Files;
 
+import org.openqa.selenium.OutputType;
+import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxBinary;
 import org.openqa.selenium.firefox.FirefoxDriver;
@@ -16,7 +20,8 @@ public class SelTest {
 	@Test
 	public void openBrowser() throws IOException {
 
-//		System.setProperty("webdriver.gecko.driver", "/home/hemasundar/Apps/geckodriver");
+		// System.setProperty("webdriver.gecko.driver",
+		// "/home/hemasundar/Apps/geckodriver");
 		System.setProperty("webdriver.firefox.marionette", "false");
 		FirefoxBinary binary = new FirefoxBinary(new File("/home/hemasundar/Apps/firefox/firefox"));
 		// GeckoDriverService createDefaultService =
@@ -28,5 +33,8 @@ public class SelTest {
 		driver = new FirefoxDriver(binary, new FirefoxProfile());
 
 		driver.get("http://google.com");
+		File screenshotAs = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
+		Files.copy(screenshotAs.toPath(), new FileOutputStream(new File("src/main/resources/test.png")));
+		driver.quit();
 	}
 }
