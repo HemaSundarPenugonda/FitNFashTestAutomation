@@ -40,6 +40,7 @@ public class SelTest {
 		
 		File file = new File(System.getProperty("user.dir")+"src/main/resources/test.png");
 		if (!file.exists()) {
+			file.getParentFile().mkdirs();
 			file.createNewFile();
 		}
 		Files.copy(screenshotAs.toPath(), new FileOutputStream(file));
