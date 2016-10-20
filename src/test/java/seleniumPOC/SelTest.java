@@ -38,7 +38,7 @@ public class SelTest {
 		driver.get("http://google.com");
 		File screenshotAs = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
 		
-		File file = new File("src/main/resources/test.png");
+		File file = new File(System.getProperty("user.dir")+"src/main/resources/test.png");
 		if (!file.exists()) {
 			file.createNewFile();
 		}
