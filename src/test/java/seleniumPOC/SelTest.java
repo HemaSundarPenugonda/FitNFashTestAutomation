@@ -47,6 +47,7 @@ public class SelTest {
 
 		}
 		Files.copy(screenshotAs.toPath(), new FileOutputStream(file));
+		System.out.println(file.getTotalSpace());
 		System.out.println("Screen shot file copied to the mentioned location successfully.");
 		driver.quit();
 	}
