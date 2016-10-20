@@ -18,7 +18,7 @@ public class SelTest {
 	WebDriver driver;
 
 	@Test
-	public void openBrowser() throws IOException {
+	public void openBrowser() throws IOException, InterruptedException {
 
 		// System.setProperty("webdriver.gecko.driver",
 		// "/home/hemasundar/Apps/geckodriver");
@@ -49,6 +49,7 @@ public class SelTest {
 		Files.copy(screenshotAs.toPath(), new FileOutputStream(file));
 		System.out.println(file.getTotalSpace());
 		System.out.println("Screen shot file copied to the mentioned location successfully.");
+		Thread.sleep(300000);
 		driver.quit();
 	}
 }
