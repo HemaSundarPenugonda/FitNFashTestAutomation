@@ -24,9 +24,9 @@ public class SelTest {
 		// "/home/hemasundar/Apps/geckodriver");
 		System.setProperty("webdriver.firefox.marionette", "false");
 		
-		FirefoxBinary binary = new FirefoxBinary(new File("/home/hema/firefox-sdk/bin/firefox"));
+//		FirefoxBinary binary = new FirefoxBinary(new File("/home/hema/firefox-sdk/bin/firefox"));
 
-//		FirefoxBinary binary = new FirefoxBinary(new File("/home/hemasundar/Apps/firefox/firefox"));
+		FirefoxBinary binary = new FirefoxBinary(new File("/home/hemasundar/Apps/firefox/firefox"));
 		// GeckoDriverService createDefaultService =
 		// GeckoDriverService.createDefaultService();
 
