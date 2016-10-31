@@ -47,6 +47,7 @@ public class Test {
 		
 		SeleniumFunctions.clickObject("xpath", "//a[text()='Borrow Now']");
 		
+		SeleniumFunctions.verifyElementText("CSS", ".brdcrm", "70 results found.");
 		
 
 	}

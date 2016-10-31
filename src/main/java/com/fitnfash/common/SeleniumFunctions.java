@@ -44,6 +44,20 @@ public class SeleniumFunctions {
 		WebElement borrowNow = driver.findElement(borrowNowBy);
 		borrowNow.click();
 	}
+
+	public static boolean verifyElementText(String locatorType, String locatorValue, String expected) {
+		By byLocator = byLocator(locatorType, locatorValue);
+		wait.until(ExpectedConditions.visibilityOfElementLocated(byLocator));
+		WebElement findElement = driver.findElement(byLocator);
+		String actualText = findElement.getText();
+		if (actualText.toLowerCase().contains(expected.toLowerCase())) {
+			return true;
+		} else {
+			return false;
+		}
+
+	}
+
 	public static By byLocator(String locatorType, String locatorValue) {
 		By byLocator = null;
 		locatorType = locatorType.toUpperCase();
