@@ -24,7 +24,8 @@ public class SelTest {
 		// "/home/hemasundar/Apps/geckodriver");
 		System.setProperty("webdriver.firefox.marionette", "false");
 
-		FirefoxBinary binary = new FirefoxBinary(new File("/home/hema/firefox-sdk/bin/firefox"));
+		// FirefoxBinary binary = new FirefoxBinary(new
+		// File("/home/hema/firefox-sdk/bin/firefox"));
 		// FirefoxBinary binary = new FirefoxBinary(new
 		// File("/home/hemasundar/Apps/firefox/firefox"));
 		System.out.println("fire fox binary path set successfully.");
@@ -34,7 +35,8 @@ public class SelTest {
 		// createDefaultService.start();
 		// System.out.println(createDefaultService.getUrl());
 		// System.out.println(createDefaultService.getClass());
-		driver = new FirefoxDriver(binary, new FirefoxProfile());
+		driver = new FirefoxDriver();
+		// driver = new FirefoxDriver(binary, new FirefoxProfile());
 		System.out.println("firefox browser launched successfully.");
 		driver.get("http://google.com");
 		System.out.println("User navigated to app url.");
@@ -49,7 +51,7 @@ public class SelTest {
 		Files.copy(screenshotAs.toPath(), new FileOutputStream(file));
 		System.out.println(file.getTotalSpace());
 		System.out.println("Screen shot file copied to the mentioned location successfully.");
-		Thread.sleep(300000);
+//		Thread.sleep(300000);
 		driver.quit();
 	}
 }

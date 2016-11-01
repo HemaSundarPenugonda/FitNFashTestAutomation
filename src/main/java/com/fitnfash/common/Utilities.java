@@ -2,13 +2,16 @@ package com.fitnfash.common;
 
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Properties;
 import java.util.Set;
 
 public class Utilities {
 	public HashMap<String, String> allPropMap = new HashMap<>();
-	public HashMap<String, String> objRepoHashMap = new HashMap<>();
+	public static List<String[]> objRepo = new ArrayList<String[]>();
+
 	public HashMap<String, String> propFile2HashMap(String path) {
 
 		Properties properties = loadPropertiesfromFile(path);
@@ -34,5 +37,20 @@ public class Utilities {
 			e.printStackTrace();
 		}
 		return properties;
+	}
+
+	public static String[] getLocatorValues(String name) {
+		String[] split = name.split("\\.");
+		for (String[] string : objRepo) {
+			if (string[0].equalsIgnoreCase(split[0])) {
+				if (string[1].equalsIgnoreCase(split[1])) {
+					String[] str = new String[2];
+					str[0] = string[3];
+					str[1] = string[4];
+					return str;
+				}
+			}
+		}
+		return null;
 	}
 }

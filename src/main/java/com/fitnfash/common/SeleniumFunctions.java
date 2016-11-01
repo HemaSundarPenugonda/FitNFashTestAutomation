@@ -13,7 +13,10 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class SeleniumFunctions {
 	public static WebDriver driver;
-	public static WebDriverWait wait = new WebDriverWait(driver, 20);
+	public static WebDriverWait wait;
+	static {
+//		wait = new WebDriverWait(driver, 20);
+	}
 
 	public static WebDriver openBrowser() {
 		// System.setProperty("webdriver.gecko.driver",
@@ -34,19 +37,27 @@ public class SeleniumFunctions {
 		// driver = new FirefoxDriver(binary, new FirefoxProfile());
 		driver = new FirefoxDriver();
 		System.out.println("firefox browser launched successfully.");
+		wait = new WebDriverWait(driver, 20);
 		return driver;
 
 	}
-
+	public static void clickObject(String locator) {
+		String[] locatorValues = Utilities.getLocatorValues(locator);
+		clickObject(locatorValues[0], locatorValues[1]);
+		
+	}
+	
 	public static void clickObject(String locatorType, String locatorValue) {
-		By borrowNowBy = By.xpath(locatorValue);
+//		By borrowNowBy = By.xpath(locatorValue);
+		By borrowNowBy = byLocator(locatorType, locatorValue);
 		wait.until(ExpectedConditions.visibilityOfElementLocated(borrowNowBy));
 		WebElement borrowNow = driver.findElement(borrowNowBy);
 		borrowNow.click();
 	}
 
-	public static boolean verifyElementText(String locatorType, String locatorValue, String expected) {
-		By byLocator = byLocator(locatorType, locatorValue);
+	public static boolean verifyElementText(String locator, String expected) {
+		String[] locatorValues = Utilities.getLocatorValues(locator);
+		By byLocator = byLocator(locatorValues[0], locatorValues[1]);
 		wait.until(ExpectedConditions.visibilityOfElementLocated(byLocator));
 		WebElement findElement = driver.findElement(byLocator);
 		String actualText = findElement.getText();
@@ -55,7 +66,6 @@ public class SeleniumFunctions {
 		} else {
 			return false;
 		}
-
 	}
 
 	public static By byLocator(String locatorType, String locatorValue) {
