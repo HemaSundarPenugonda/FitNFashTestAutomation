@@ -9,13 +9,14 @@ import org.openqa.selenium.firefox.FirefoxBinary;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.FirefoxProfile;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class SeleniumFunctions {
 	public static WebDriver driver;
 	public static WebDriverWait wait;
 	static {
-//		wait = new WebDriverWait(driver, 20);
+		// wait = new WebDriverWait(driver, 20);
 	}
 
 	public static WebDriver openBrowser() {
@@ -41,16 +42,16 @@ public class SeleniumFunctions {
 		return driver;
 
 	}
+
 	public static void clickObject(String locator) {
 		String[] locatorValues = Utilities.getLocatorValues(locator);
 		clickObject(locatorValues[0], locatorValues[1]);
-		
+
 	}
-	
+
 	public static void clickObject(String locatorType, String locatorValue) {
-//		By borrowNowBy = By.xpath(locatorValue);
 		By borrowNowBy = byLocator(locatorType, locatorValue);
-		wait.until(ExpectedConditions.visibilityOfElementLocated(borrowNowBy));
+		wait.until(ExpectedConditions.elementToBeClickable(borrowNowBy));
 		WebElement borrowNow = driver.findElement(borrowNowBy);
 		borrowNow.click();
 	}
@@ -66,6 +67,15 @@ public class SeleniumFunctions {
 		} else {
 			return false;
 		}
+	}
+
+	public static void enterKeys(String locator, String value) {
+		String[] locatorValues = Utilities.getLocatorValues(locator);
+		By borrowNowBy = byLocator(locatorValues[0], locatorValues[1]);
+		wait.until(ExpectedConditions.visibilityOfElementLocated(borrowNowBy));
+		WebElement borrowNow = driver.findElement(borrowNowBy);
+		borrowNow.sendKeys(value);
+
 	}
 
 	public static By byLocator(String locatorType, String locatorValue) {
@@ -86,5 +96,24 @@ public class SeleniumFunctions {
 		}
 		return byLocator;
 
+	}
+
+	public static String enterDataSelectDropDown(By byLocator, String selectText) throws InterruptedException {
+
+		wait.until(ExpectedConditions.visibilityOfElementLocated(byLocator));
+		WebElement element = driver.findElement(byLocator);
+		Select select = new Select(element);
+		Thread.sleep(3000);
+		select.selectByVisibleText(selectText);
+		return "Selecting [" + selectText + "] from drop down is successfull: " + byLocator;
+
+	}
+
+	public static String enterDataSelectDropDown(String locator, String selectText) throws InterruptedException {
+
+		String[] locatorValues = Utilities.getLocatorValues(locator);
+		By byLocator = byLocator(locatorValues[0], locatorValues[1]);
+
+		return enterDataSelectDropDown(byLocator, selectText);
 	}
 }
