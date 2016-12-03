@@ -1,0 +1,23 @@
+Test Cases:
+Complete flows:
+1) Book a dress with alternative - Success payment - Check the dress is blocked for the days
+2) Book a dress without Alternative - Success payment - Check the dress is blocked for the days
+
+3) Book a dress with alternative - Fail payment - Check the dress is not blocked for the days
+4) Book a dress without Alternative - Fail payment - Check the dress is not blocked for the days
+
+5) Book a dress with demo and with alternative - Success payment - Check the dress is blocked for the days & Demo slot is blocked
+6) Book a dress with demo and without Alternative - Success payment - Check the dress is blocked for the days & Demo slot is blocked
+
+7) Book a dress with demo and with alternative - Fail payment - Check the dress is not blocked for the days & Demo slot is not blocked
+8) Book a dress with demo and without Alternative - Fail payment - Check the dress is not blocked for the days & Demo slot is not blocked
+ 
+Independent flows:
+9) Do we need any test cases around Delivery charge ?
+10) Can we check the sorting in main scren (Eg: sort by price)
+11) Check whether all the dress links are working or not.
+12) Check for any broken links in home page & in one of the dress details page.
+13) Check whether the insurence amount is same as main dress rent or not.
+14) Check Only next 1 month dates should be enabled/available to select for dress booking.
+15) Check dresses count in each category.
+16) Check whether on clearing the event date, Cart is empty or not.

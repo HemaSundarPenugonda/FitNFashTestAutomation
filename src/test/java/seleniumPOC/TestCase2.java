@@ -24,7 +24,7 @@ import com.fitnfash.common.SeleniumFunctions;
 import com.fitnfash.common.TestCaseUtilities;
 import com.fitnfash.common.Utilities;
 
-public class TestCase1 {
+public class TestCase2 {
 	public Utilities objUtility = new Utilities();
 	public CurrentEnv objCurrentEnv = new CurrentEnv();
 
@@ -58,7 +58,7 @@ public class TestCase1 {
 
 		TestCaseUtilities.pageDownMultipleTimes(actions, 15);
 		SeleniumFunctions.wait4ElementtobeDisplayed("HomePage.LoadingGif");
-//		Thread.sleep(3000);
+		// Thread.sleep(3000);
 
 		// 4) Select Grace Skater Dress
 		SeleniumFunctions.clickObject("HomePage.GraceSkaterDress");
@@ -95,7 +95,7 @@ public class TestCase1 {
 
 		TestCaseUtilities.pageDownMultipleTimes(actions, 15);
 		SeleniumFunctions.wait4ElementtobeDisplayed("HomePage.LoadingGif");
-//		Thread.sleep(3000);
+		// Thread.sleep(3000);
 
 		// 12) Click on Jena Gown
 		SeleniumFunctions.clickObject("HomePage.JennaGown");
@@ -140,12 +140,12 @@ public class TestCase1 {
 		// 15) in Promocode box add promo code FIRSTBUY
 		SeleniumFunctions.enterKeys("HomePage.promoCode", "FIRSTBUY");
 		SeleniumFunctions.wait4ElementtobeDisplayed("HomePage.LoadingGif");
-//		Thread.sleep(3000);
+		// Thread.sleep(3000);
 
 		// 16) Click on apply
 		SeleniumFunctions.clickObject("HomePage.applyPromoCode");
 		SeleniumFunctions.wait4ElementtobeDisplayed("HomePage.LoadingGif");
-//		Thread.sleep(3000);
+		// Thread.sleep(3000);
 
 		// 17) Promo code should be applied with 10% discount
 		boolean verifyElementText2 = SeleniumFunctions.verifyElementText("HomePage.promoCodeSuccess",
@@ -169,7 +169,7 @@ public class TestCase1 {
 		// 20) click on continue
 		SeleniumFunctions.clickObject("HomePage.continueAddress");
 		SeleniumFunctions.wait4ElementtobeDisplayed("HomePage.LoadingGif");
-//		Thread.sleep(3000);
+		// Thread.sleep(3000);
 
 		// 21) Click on continue to pay
 		SeleniumFunctions.clickObject("HomePage.Continue2Pay");
@@ -184,7 +184,7 @@ public class TestCase1 {
 
 		// 24) Click on Return to the merchant site (Transaction Status should
 		// be selected as N)
-		SeleniumFunctions.enterDataSelectDropDown("HomePage.TransactionStatus", "Y");
+		SeleniumFunctions.enterDataSelectDropDown("HomePage.TransactionStatus", "N");
 
 		// 25) Success page should open with the placed order details
 		SeleniumFunctions.clickObject("HomePage.Return2Murchant");
@@ -198,7 +198,7 @@ public class TestCase1 {
 
 		SeleniumFunctions.clickObject("HomePage.Date30");
 		SeleniumFunctions.wait4ElementtobeDisplayed("HomePage.LoadingGif");
-//		Thread.sleep(5000);
+		// Thread.sleep(5000);
 		SeleniumFunctions.clickObject("HomePage.closeSideBar");
 		Thread.sleep(3000);
 		// 28) Click on Borrow now
