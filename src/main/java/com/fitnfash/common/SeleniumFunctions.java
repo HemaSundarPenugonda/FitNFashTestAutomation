@@ -8,6 +8,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.firefox.FirefoxBinary;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.FirefoxProfile;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -43,16 +44,17 @@ public class SeleniumFunctions {
 
 	}
 
-	public static void clickObject(String locator) {
+	public static void clickObject(String locator) throws InterruptedException {
 		String[] locatorValues = Utilities.getLocatorValues(locator);
 		clickObject(locatorValues[0], locatorValues[1]);
 
 	}
 
-	public static void clickObject(String locatorType, String locatorValue) {
+	public static void clickObject(String locatorType, String locatorValue) throws InterruptedException {
 		By borrowNowBy = byLocator(locatorType, locatorValue);
 		wait.until(ExpectedConditions.elementToBeClickable(borrowNowBy));
 		WebElement borrowNow = driver.findElement(borrowNowBy);
+		Thread.sleep(1000);
 		borrowNow.click();
 	}
 
@@ -115,5 +117,28 @@ public class SeleniumFunctions {
 		By byLocator = byLocator(locatorValues[0], locatorValues[1]);
 
 		return enterDataSelectDropDown(byLocator, selectText);
+	}
+	public static boolean wait4ElementtobeDisplayed(String locator) {
+
+		String[] locatorValues = Utilities.getLocatorValues(locator);
+		return wait4ElementtobeDisplayed(locatorValues[0], locatorValues[1]);
+	}
+
+	private static boolean wait4ElementtobeDisplayed(String locatorType, String locatorValue) {
+		By borrowNowBy = byLocator(locatorType, locatorValue);
+		wait.until(ExpectedConditions.presenceOfAllElementsLocatedBy(borrowNowBy));
+		return true;
+	}
+	public static void clickObjectWIthOutWait(String locator) throws InterruptedException {
+		String[] locatorValues = Utilities.getLocatorValues(locator);
+		clickObjectWIthOutWait(locatorValues[0], locatorValues[1]);
+
+	}
+
+	public static void clickObjectWIthOutWait(String locatorType, String locatorValue) throws InterruptedException {
+		By borrowNowBy = byLocator(locatorType, locatorValue);
+		Thread.sleep(3000);
+		WebElement borrowNow = driver.findElement(borrowNowBy);
+		new Actions(driver).click(borrowNow);
 	}
 }
