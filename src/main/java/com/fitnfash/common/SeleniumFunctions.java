@@ -47,11 +47,15 @@ public class SeleniumFunctions {
 	public static void clickObject(String locator) throws InterruptedException {
 		String[] locatorValues = Utilities.getLocatorValues(locator);
 		clickObject(locatorValues[0], locatorValues[1]);
-
+		System.out.println("Click on Object successfull : "+locator);
 	}
 
 	public static void clickObject(String locatorType, String locatorValue) throws InterruptedException {
 		By borrowNowBy = byLocator(locatorType, locatorValue);
+		clickObject(borrowNowBy);
+	}
+
+	public static void clickObject(By borrowNowBy) throws InterruptedException {
 		wait.until(ExpectedConditions.elementToBeClickable(borrowNowBy));
 		WebElement borrowNow = driver.findElement(borrowNowBy);
 		Thread.sleep(1000);
@@ -77,6 +81,7 @@ public class SeleniumFunctions {
 		wait.until(ExpectedConditions.visibilityOfElementLocated(borrowNowBy));
 		WebElement borrowNow = driver.findElement(borrowNowBy);
 		borrowNow.sendKeys(value);
+		System.out.println("Entering text in the filed is successfull : "+locator);
 
 	}
 
@@ -97,6 +102,11 @@ public class SeleniumFunctions {
 			break;
 		}
 		return byLocator;
+
+	}
+	public static By byLocator(String locatorType, String locatorValue, String data) {
+		locatorValue = locatorValue.replace("${data}", data);
+		return byLocator(locatorType, locatorValue);
 
 	}
 

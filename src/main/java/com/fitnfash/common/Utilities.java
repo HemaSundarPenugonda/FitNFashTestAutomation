@@ -8,6 +8,9 @@ import java.util.List;
 import java.util.Properties;
 import java.util.Set;
 
+import org.openqa.selenium.Keys;
+import org.openqa.selenium.interactions.Actions;
+
 public class Utilities {
 	public HashMap<String, String> allPropMap = new HashMap<>();
 	public static List<String[]> objRepo = new ArrayList<String[]>();
@@ -52,5 +55,37 @@ public class Utilities {
 			}
 		}
 		return null;
+	}
+	public void loadObjRepo() {
+		HashMap<String, String> objRepoHashMap = propFile2HashMap(System.getProperty("user.dir") + "/src/main/resources/objRepo.properties");
+		Set<String> keySet = objRepoHashMap.keySet();
+
+		for (String indKey : keySet) {
+			String[] split = new String[5];
+			String[] split1 = indKey.split("\\.");
+			split[0] = split1[0];
+			split[1] = split1[1];
+			split[2] = split1[2];
+			split[3] = split1[3];
+			split[4] = objRepoHashMap.get(indKey);
+			objRepo.add(split);
+
+		}
+	}
+
+	public void loadProperties() {
+		Properties sysProperties = System.getProperties();
+		HashMap<String, String> propFile2HashMap = propFile2HashMap(System.getProperty("user.dir") + "/src/main/resources/uiautomation.properties");
+		
+		HashMap<String, String> propObj2HashMap = propObj2HashMap(sysProperties);
+		
+		allPropMap.putAll(propFile2HashMap);
+		allPropMap.putAll(propObj2HashMap);
+	}
+	public void pageDownMultipleTimes(Actions actions, int count) throws InterruptedException {
+		for (int i = 0; i < count; i++) {
+			actions.sendKeys(Keys.PAGE_DOWN).build().perform();
+			Thread.sleep(1000);
+		}
 	}
 }

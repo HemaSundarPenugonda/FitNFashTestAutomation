@@ -17,6 +17,7 @@ import org.openqa.selenium.logging.LogEntry;
 import org.openqa.selenium.logging.Logs;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.annotations.AfterSuite;
 import org.testng.annotations.BeforeSuite;
 
 import com.fitnfash.common.CurrentEnv;
@@ -27,22 +28,25 @@ import com.fitnfash.common.Utilities;
 public class TestCase1 {
 	public Utilities objUtility = new Utilities();
 	public CurrentEnv objCurrentEnv = new CurrentEnv();
-
+	WebDriver driver;
+	
 	@BeforeSuite
 	public void beforeSuite() {
 
-		TestCaseUtilities.loadProperties();
-		TestCaseUtilities.loadObjRepo();
+		objUtility.loadProperties();
+		objUtility.loadObjRepo();
 		objCurrentEnv.browserName = objUtility.allPropMap.get("browser");
 		objCurrentEnv.url = objUtility.allPropMap.get("url");
+		objCurrentEnv.dress1Name = objUtility.allPropMap.get("Dress1.name");
+		objCurrentEnv.dress2Name = objUtility.allPropMap.get("Dress2.name");
 	}
 
 	@org.testng.annotations.Test
 	public void sampleTest() throws InterruptedException {
-		System.out.println("test case 2");
+		System.out.println("test case 1");
 		// SeleniumFunctions.wait4ElementtobeDisplayed("HomePage.LoadingGif");
 
-		WebDriver driver = SeleniumFunctions.openBrowser();
+		driver = SeleniumFunctions.openBrowser();
 		driver.manage().window().maximize();
 		Actions actions = new Actions(driver);
 		// 1) Go to home page
@@ -58,10 +62,13 @@ public class TestCase1 {
 
 		TestCaseUtilities.pageDownMultipleTimes(actions, 15);
 		SeleniumFunctions.wait4ElementtobeDisplayed("HomePage.LoadingGif");
-//		Thread.sleep(3000);
+		// Thread.sleep(3000);
 
 		// 4) Select Grace Skater Dress
-		SeleniumFunctions.clickObject("HomePage.GraceSkaterDress");
+//		SeleniumFunctions.clickObject("HomePage.GraceSkaterDress");
+		String[] locatorValues = Utilities.getLocatorValues("HomePage.DressLink");
+		By byLocatorDress1 = SeleniumFunctions.byLocator(locatorValues[0], locatorValues[1], objCurrentEnv.dress1Name);
+		SeleniumFunctions.clickObject(byLocatorDress1);
 		SeleniumFunctions.wait4ElementtobeDisplayed("HomePage.LoadingGif");
 
 		// 5) Product details page should appear
@@ -95,14 +102,18 @@ public class TestCase1 {
 
 		TestCaseUtilities.pageDownMultipleTimes(actions, 15);
 		SeleniumFunctions.wait4ElementtobeDisplayed("HomePage.LoadingGif");
-//		Thread.sleep(3000);
+		// Thread.sleep(3000);
 
 		// 12) Click on Jena Gown
-		SeleniumFunctions.clickObject("HomePage.JennaGown");
+//		SeleniumFunctions.clickObject("HomePage.JennaGown");
+//		String[] locatorValues = Utilities.getLocatorValues("HomePage.DressLink");
+		By byLocatorDress2 = SeleniumFunctions.byLocator(locatorValues[0], locatorValues[1], objCurrentEnv.dress2Name);
+		SeleniumFunctions.clickObject(byLocatorDress2);
+
 		SeleniumFunctions.wait4ElementtobeDisplayed("HomePage.LoadingGif");
 
 		// 13) Product detail should open , click on size L
-		SeleniumFunctions.clickObject("HomePage.SizeL");
+		 SeleniumFunctions.clickObject("HomePage.SizeL");
 		SeleniumFunctions.wait4ElementtobeDisplayed("HomePage.LoadingGif");
 		Thread.sleep(3000);
 
@@ -140,18 +151,22 @@ public class TestCase1 {
 		// 15) in Promocode box add promo code FIRSTBUY
 		SeleniumFunctions.enterKeys("HomePage.promoCode", "FIRSTBUY");
 		SeleniumFunctions.wait4ElementtobeDisplayed("HomePage.LoadingGif");
-//		Thread.sleep(3000);
+		// Thread.sleep(3000);
 
 		// 16) Click on apply
 		SeleniumFunctions.clickObject("HomePage.applyPromoCode");
 		SeleniumFunctions.wait4ElementtobeDisplayed("HomePage.LoadingGif");
-//		Thread.sleep(3000);
+		// Thread.sleep(3000);
 
 		// 17) Promo code should be applied with 10% discount
-		boolean verifyElementText2 = SeleniumFunctions.verifyElementText("HomePage.promoCodeSuccess",
-				"Promo code FIRSTBUY applied");
-
-		boolean verifyElementText3 = SeleniumFunctions.verifyElementText("HomePage.promoCodeDiscountValue", "49.90");
+		/*
+		 * boolean verifyElementText2 =
+		 * SeleniumFunctions.verifyElementText("HomePage.promoCodeSuccess",
+		 * "Promo code FIRSTBUY applied");
+		 * 
+		 * boolean verifyElementText3 = SeleniumFunctions.verifyElementText(
+		 * "HomePage.promoCodeDiscountValue", "49.90");
+		 */
 		Thread.sleep(3000);
 
 		// 18) Click on Proceed to checkout
@@ -169,7 +184,7 @@ public class TestCase1 {
 		// 20) click on continue
 		SeleniumFunctions.clickObject("HomePage.continueAddress");
 		SeleniumFunctions.wait4ElementtobeDisplayed("HomePage.LoadingGif");
-//		Thread.sleep(3000);
+		// Thread.sleep(3000);
 
 		// 21) Click on continue to pay
 		SeleniumFunctions.clickObject("HomePage.Continue2Pay");
@@ -194,29 +209,37 @@ public class TestCase1 {
 		SeleniumFunctions.clickObject("HomePage.Continue");
 		Thread.sleep(3000);
 		// 27) Select the same date for which previous order was placed
-		SeleniumFunctions.clickObject("HomePage.SelectDate");
+		SeleniumFunctions.clickObject("HomePage.DateMenu");
 
 		SeleniumFunctions.clickObject("HomePage.Date30");
 		SeleniumFunctions.wait4ElementtobeDisplayed("HomePage.LoadingGif");
-//		Thread.sleep(5000);
-		SeleniumFunctions.clickObject("HomePage.closeSideBar");
+		// Thread.sleep(5000);
 		Thread.sleep(3000);
+		SeleniumFunctions.clickObject("HomePage.closeSideBar");
+		
 		// 28) Click on Borrow now
 		SeleniumFunctions.clickObject("HomePage.BorrowNow");
-
-		for (int i = 0; i < 10; i++) {
-			actions.sendKeys(Keys.PAGE_DOWN).build().perform();
-			Thread.sleep(1000);
-		}
+		SeleniumFunctions.wait4ElementtobeDisplayed("HomePage.LoadingGif");
+		
+		TestCaseUtilities.pageDownMultipleTimes(actions, 15);
 		Thread.sleep(3000);
 		// 4) Select Grace Skater Dress
 		SeleniumFunctions.clickObject("HomePage.GraceSkaterDress");
-
+		SeleniumFunctions.wait4ElementtobeDisplayed("HomePage.LoadingGif");
+		
 		boolean verifyElementText4 = SeleniumFunctions.verifyElementText("HomePage.FullyBooked",
 				"fully booked on selected dates");
 		// 29) Select Size L
 		// 30) It should be not available and reserve now should be disabled
+		if (verifyElementText4) {
+			System.out.println("Dress is ordered successfully");
+		}
 
 	}
 
+	@AfterSuite
+	public void afterSuite() {
+//		driver.quit();
+
+	}
 }
