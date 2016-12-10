@@ -6,5 +6,6 @@ public class CurrentEnv {
 	public String url;
 	public String dress1Name;
 	public String dress2Name;
-
+	public String totalDresses;
+	public String dress1Price;
 }

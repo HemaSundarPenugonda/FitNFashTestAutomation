@@ -1,0 +1,21 @@
+1) Verify search functionality on home page
+2) Check whether all the main menus and sub menu links are working fine. And verify whether correct results are displayed or not.
+http://fit91485.fitnfash.com/browse/
+3) Verify sort functionality.
+4) Check whether all the dress links are working or not.
+5) Verify filter functionality
+6) Apply a filter and re-navigate to the same page, filter should not be retained.
+7) Repeat (5) & (6) points for every sub menu.
+8) On selecting a particular date, 
+		Dress list should be displayed in 2 sections:
+			Available for booking
+			Already booked
+		While trying to view all dresses, booked dreeses (On selected dates), should not be available for booking. And booked dresses should be displayed in separate section.
+		On opening the already booked dress, "Fully booked on selected dates" button should be displayed.
+		Change date after adding a a dress into cart, Cart should be cleared
+
+Dess details page:
+Check dress size chart popup
+Change the event date, "Reserve now" button should be updated depends on the dress availability on that particular date.
+Check menu links are working or not.
+		

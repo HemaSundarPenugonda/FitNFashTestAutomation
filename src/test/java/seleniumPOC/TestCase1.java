@@ -29,7 +29,7 @@ public class TestCase1 {
 	public Utilities objUtility = new Utilities();
 	public CurrentEnv objCurrentEnv = new CurrentEnv();
 	WebDriver driver;
-	
+
 	@BeforeSuite
 	public void beforeSuite() {
 
@@ -38,7 +38,9 @@ public class TestCase1 {
 		objCurrentEnv.browserName = objUtility.allPropMap.get("browser");
 		objCurrentEnv.url = objUtility.allPropMap.get("url");
 		objCurrentEnv.dress1Name = objUtility.allPropMap.get("Dress1.name");
+		objCurrentEnv.dress1Price = objUtility.allPropMap.get("Dress1.price");
 		objCurrentEnv.dress2Name = objUtility.allPropMap.get("Dress2.name");
+		objCurrentEnv.totalDresses = objUtility.allPropMap.get("TotalDresses");
 	}
 
 	@org.testng.annotations.Test
@@ -50,7 +52,7 @@ public class TestCase1 {
 		driver.manage().window().maximize();
 		Actions actions = new Actions(driver);
 		// 1) Go to home page
-		driver.get("http://fit91485.fitnfash.com/");
+		driver.get(objCurrentEnv.url);
 		SeleniumFunctions.wait4ElementtobeDisplayed("HomePage.LoadingGif");
 
 		// 2) Click view all/borrow now
@@ -58,14 +60,14 @@ public class TestCase1 {
 		SeleniumFunctions.wait4ElementtobeDisplayed("HomePage.LoadingGif");
 
 		// 3) 70 items should be present (test data ) (Assertion)
-		boolean verifyElementText = SeleniumFunctions.verifyElementText("HomePage.ResultCount", "70 results found.");
+		boolean verifyElementText = SeleniumFunctions.verifyElementText("HomePage.ResultCount", objCurrentEnv.totalDresses);
 
 		TestCaseUtilities.pageDownMultipleTimes(actions, 15);
 		SeleniumFunctions.wait4ElementtobeDisplayed("HomePage.LoadingGif");
 		// Thread.sleep(3000);
 
 		// 4) Select Grace Skater Dress
-//		SeleniumFunctions.clickObject("HomePage.GraceSkaterDress");
+		// SeleniumFunctions.clickObject("HomePage.GraceSkaterDress");
 		String[] locatorValues = Utilities.getLocatorValues("HomePage.DressLink");
 		By byLocatorDress1 = SeleniumFunctions.byLocator(locatorValues[0], locatorValues[1], objCurrentEnv.dress1Name);
 		SeleniumFunctions.clickObject(byLocatorDress1);
@@ -94,7 +96,7 @@ public class TestCase1 {
 
 		// 10) Cart page should open where all the data (price insurance rent
 		// etc ) should be of the selected dress only
-		boolean verifyElementText1 = SeleniumFunctions.verifyElementText("HomePage.SubTotal", "499.00");
+		boolean verifyElementText1 = SeleniumFunctions.verifyElementText("HomePage.SubTotal", objCurrentEnv.dress1Price);
 
 		// 11) Click on add an alternative
 		SeleniumFunctions.clickObject("HomePage.AddAlternativeLink");
@@ -105,15 +107,16 @@ public class TestCase1 {
 		// Thread.sleep(3000);
 
 		// 12) Click on Jena Gown
-//		SeleniumFunctions.clickObject("HomePage.JennaGown");
-//		String[] locatorValues = Utilities.getLocatorValues("HomePage.DressLink");
+		// SeleniumFunctions.clickObject("HomePage.JennaGown");
+		// String[] locatorValues =
+		// Utilities.getLocatorValues("HomePage.DressLink");
 		By byLocatorDress2 = SeleniumFunctions.byLocator(locatorValues[0], locatorValues[1], objCurrentEnv.dress2Name);
 		SeleniumFunctions.clickObject(byLocatorDress2);
 
 		SeleniumFunctions.wait4ElementtobeDisplayed("HomePage.LoadingGif");
 
 		// 13) Product detail should open , click on size L
-		 SeleniumFunctions.clickObject("HomePage.SizeL");
+		SeleniumFunctions.clickObject("HomePage.SizeL");
 		SeleniumFunctions.wait4ElementtobeDisplayed("HomePage.LoadingGif");
 		Thread.sleep(3000);
 
@@ -216,17 +219,17 @@ public class TestCase1 {
 		// Thread.sleep(5000);
 		Thread.sleep(3000);
 		SeleniumFunctions.clickObject("HomePage.closeSideBar");
-		
+
 		// 28) Click on Borrow now
 		SeleniumFunctions.clickObject("HomePage.BorrowNow");
 		SeleniumFunctions.wait4ElementtobeDisplayed("HomePage.LoadingGif");
-		
+
 		TestCaseUtilities.pageDownMultipleTimes(actions, 15);
 		Thread.sleep(3000);
 		// 4) Select Grace Skater Dress
 		SeleniumFunctions.clickObject("HomePage.GraceSkaterDress");
 		SeleniumFunctions.wait4ElementtobeDisplayed("HomePage.LoadingGif");
-		
+
 		boolean verifyElementText4 = SeleniumFunctions.verifyElementText("HomePage.FullyBooked",
 				"fully booked on selected dates");
 		// 29) Select Size L
@@ -239,7 +242,7 @@ public class TestCase1 {
 
 	@AfterSuite
 	public void afterSuite() {
-//		driver.quit();
+		 driver.quit();
 
 	}
 }
