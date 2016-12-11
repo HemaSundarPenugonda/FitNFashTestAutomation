@@ -60,7 +60,8 @@ public class TestCase1 {
 		SeleniumFunctions.wait4ElementtobeDisplayed("HomePage.LoadingGif");
 
 		// 3) 70 items should be present (test data ) (Assertion)
-		boolean verifyElementText = SeleniumFunctions.verifyElementText("HomePage.ResultCount", objCurrentEnv.totalDresses);
+		boolean verifyElementText = SeleniumFunctions.verifyElementText("HomePage.ResultCount",
+				objCurrentEnv.totalDresses);
 
 		TestCaseUtilities.pageDownMultipleTimes(actions, 15);
 		SeleniumFunctions.wait4ElementtobeDisplayed("HomePage.LoadingGif");
@@ -78,7 +79,13 @@ public class TestCase1 {
 		// 6) Click on select date
 		SeleniumFunctions.clickObject("HomePage.SelectDate");
 
-		SeleniumFunctions.clickObject("HomePage.Date30");
+		String date = TestCaseUtilities.selectDate(driver, "HomePage.CalMonth", "HomePage.CalNext");
+
+		String[] dateLocator = Utilities.getLocatorValues("HomePage.Date");
+		By dateBy = SeleniumFunctions.byLocator(dateLocator[0], dateLocator[1], date);
+		SeleniumFunctions.clickObject(dateBy);
+
+		// SeleniumFunctions.clickObject("HomePage.Date30");
 		SeleniumFunctions.wait4ElementtobeDisplayed("HomePage.LoadingGif");
 		Thread.sleep(5000);
 
@@ -96,7 +103,8 @@ public class TestCase1 {
 
 		// 10) Cart page should open where all the data (price insurance rent
 		// etc ) should be of the selected dress only
-		boolean verifyElementText1 = SeleniumFunctions.verifyElementText("HomePage.SubTotal", objCurrentEnv.dress1Price);
+		boolean verifyElementText1 = SeleniumFunctions.verifyElementText("HomePage.SubTotal",
+				objCurrentEnv.dress1Price);
 
 		// 11) Click on add an alternative
 		SeleniumFunctions.clickObject("HomePage.AddAlternativeLink");
@@ -214,7 +222,8 @@ public class TestCase1 {
 		// 27) Select the same date for which previous order was placed
 		SeleniumFunctions.clickObject("HomePage.DateMenu");
 
-		SeleniumFunctions.clickObject("HomePage.Date30");
+		SeleniumFunctions.clickObject(dateBy);
+//		SeleniumFunctions.clickObject("HomePage.Date30");
 		SeleniumFunctions.wait4ElementtobeDisplayed("HomePage.LoadingGif");
 		// Thread.sleep(5000);
 		Thread.sleep(3000);
@@ -242,7 +251,7 @@ public class TestCase1 {
 
 	@AfterSuite
 	public void afterSuite() {
-		 driver.quit();
+		driver.quit();
 
 	}
 }
