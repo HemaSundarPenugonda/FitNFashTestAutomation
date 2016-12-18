@@ -219,7 +219,7 @@ public class TestCase2 {
 
 	@AfterSuite
 	public void afterSuite() {
-		// driver.quit();
+		driver.quit();
 
 	}
 }
