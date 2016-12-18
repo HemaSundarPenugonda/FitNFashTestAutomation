@@ -47,7 +47,7 @@
 						<reporter.debug>false</reporter.debug>
 					</systemPropertyVariables>
 					<suiteXmlFiles>
-						<suiteXmlFile>${testcase}.xml</suiteXmlFile>
+						<suiteXmlFile>TestNG/${testcase}.xml</suiteXmlFile>
 					</suiteXmlFiles>
 				</configuration>
 				<executions>
