@@ -1,9 +1,10 @@
- ## Software required for setting up this project:
+## Software required for setting up this project:
 	1. Install Java7 on your system and update path variable
 	2. Install Eclipse 
 	3. if you want to execute from command line: Install Maven on your system and update path variable
 	4. if you want to execute from eclipse: Install Eclipse-Maven Plug-in an Install Eclipse-TestNG plug-in
 	6. To get source code: Install Git SCM on your system for Git Command line
+	
 ## Test cases available for execution:
 	1. testcase1 --> Book a dress with alternative - Success payment
 	2. testcase2 --> Book a dress with alternative - Fail payment
