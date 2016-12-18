@@ -29,7 +29,7 @@ public class CheckAllLinks {
 	public static void main(String[] args) throws InterruptedException, IOException {
 		int invalidLinksCount = 0;
 
-		WebDriver driver = SeleniumFunctions.openBrowser();
+		WebDriver driver = SeleniumFunctions.openBrowser(20);
 		driver.get("http://fit91485.fitnfash.com/");
 		allLinksSet.add("http://fit91485.fitnfash.com/");
 		// List<WebElement> anchorTagsList =

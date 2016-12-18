@@ -49,11 +49,24 @@ public class TestCaseUtilities {
 	public static void assignEnv(CurrentEnv objCurrentEnv, Utilities objUtility) {
 		objCurrentEnv.browserName = objUtility.allPropMap.get("browser");
 		objCurrentEnv.url = objUtility.allPropMap.get("url");
+		objCurrentEnv.maxTimeout = objUtility.allPropMap.get("MaximumTimeout");
+		objCurrentEnv.totalDresses = objUtility.allPropMap.get("TotalDresses");
+		
 		objCurrentEnv.dress1Name = objUtility.allPropMap.get("Dress1.name");
 		objCurrentEnv.dress1Price = objUtility.allPropMap.get("Dress1.price");
+		objCurrentEnv.dress1Size = objUtility.allPropMap.get("Dress1.size");
+		
 		objCurrentEnv.dress2Name = objUtility.allPropMap.get("Dress2.name");
-		objCurrentEnv.totalDresses = objUtility.allPropMap.get("TotalDresses");
+		objCurrentEnv.dress2Price = objUtility.allPropMap.get("Dress2.price");
+		objCurrentEnv.dress2Size = objUtility.allPropMap.get("Dress2.size");
+		
 		objCurrentEnv.demoDress1Name = objUtility.allPropMap.get("DemoDress1.name");
+		objCurrentEnv.demoDress1Price = objUtility.allPropMap.get("DemoDress1.price");
+		objCurrentEnv.demoDress1Size = objUtility.allPropMap.get("DemoDress1.size");
+		
 		objCurrentEnv.demoDress2Name = objUtility.allPropMap.get("DemoDress2.name");
+		objCurrentEnv.demoDress2Price = objUtility.allPropMap.get("DemoDress2.price");
+		objCurrentEnv.demoDress2Size = objUtility.allPropMap.get("DemoDress2.size");
+		
 	}
 }

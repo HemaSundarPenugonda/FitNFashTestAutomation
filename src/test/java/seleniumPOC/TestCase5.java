@@ -43,7 +43,7 @@ public class TestCase5 {
 		System.out.println("test case 5");
 		// SeleniumFunctions.wait4ElementtobeDisplayed("HomePage.LoadingGif");
 
-		driver = SeleniumFunctions.openBrowser();
+		driver = SeleniumFunctions.openBrowser(Integer.parseInt(objCurrentEnv.maxTimeout));
 		driver.manage().window().maximize();
 		Actions actions = new Actions(driver);
 		// 1) Go to home page
@@ -88,6 +88,15 @@ public class TestCase5 {
 		Thread.sleep(3000);
 		// 7) select 7 days ahead date (if today is 1 then select 8)
 		// 8) select size M
+		if (objCurrentEnv.demoDress1Size.equalsIgnoreCase("M")) {
+			SeleniumFunctions.clickObject("HomePage.SizeM");
+			SeleniumFunctions.wait4ElementtobeDisplayed("HomePage.LoadingGif");
+			Thread.sleep(3000);
+		} else if (objCurrentEnv.demoDress1Size.equalsIgnoreCase("L")) {
+			SeleniumFunctions.clickObject("HomePage.SizeL");
+			SeleniumFunctions.wait4ElementtobeDisplayed("HomePage.LoadingGif");
+			Thread.sleep(3000);	
+		}
 		SeleniumFunctions.enterDataSelectDropDown("HomePage.trailSlot", 2);
 
 		// 9) Click on reserve now
@@ -117,9 +126,15 @@ public class TestCase5 {
 		SeleniumFunctions.wait4ElementtobeDisplayed("HomePage.LoadingGif");
 
 		// 13) Product detail should open , click on size L
-		SeleniumFunctions.clickObject("HomePage.SizeL");
-		SeleniumFunctions.wait4ElementtobeDisplayed("HomePage.LoadingGif");
-		Thread.sleep(3000);
+		if (objCurrentEnv.demoDress2Size.equalsIgnoreCase("M")) {
+			SeleniumFunctions.clickObject("HomePage.SizeM");
+			SeleniumFunctions.wait4ElementtobeDisplayed("HomePage.LoadingGif");
+			Thread.sleep(3000);
+		} else if (objCurrentEnv.demoDress2Size.equalsIgnoreCase("L")) {
+			SeleniumFunctions.clickObject("HomePage.SizeL");
+			SeleniumFunctions.wait4ElementtobeDisplayed("HomePage.LoadingGif");
+			Thread.sleep(3000);	
+		}
 
 		// 14) click on add alternative
 		SeleniumFunctions.clickObject("HomePage.AddAlternativeBtn");

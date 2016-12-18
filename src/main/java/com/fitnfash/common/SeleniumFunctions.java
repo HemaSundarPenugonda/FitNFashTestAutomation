@@ -20,7 +20,7 @@ public class SeleniumFunctions {
 		// wait = new WebDriverWait(driver, 20);
 	}
 
-	public static WebDriver openBrowser() {
+	public static WebDriver openBrowser(int timeOut) {
 		// System.setProperty("webdriver.gecko.driver",
 		// "/home/hemasundar/Apps/geckodriver");
 		System.setProperty("webdriver.firefox.marionette", "false");
@@ -39,7 +39,7 @@ public class SeleniumFunctions {
 		// driver = new FirefoxDriver(binary, new FirefoxProfile());
 		driver = new FirefoxDriver();
 		System.out.println("firefox browser launched successfully.");
-		wait = new WebDriverWait(driver, 20);
+		wait = new WebDriverWait(driver, timeOut);
 		return driver;
 
 	}
