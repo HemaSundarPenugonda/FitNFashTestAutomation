@@ -25,7 +25,7 @@ import com.fitnfash.common.SeleniumFunctions;
 import com.fitnfash.common.TestCaseUtilities;
 import com.fitnfash.common.Utilities;
 
-public class TestCase2 {
+public class TestCase3 {
 	public Utilities objUtility = new Utilities();
 	public CurrentEnv objCurrentEnv = new CurrentEnv();
 	WebDriver driver;
@@ -40,7 +40,7 @@ public class TestCase2 {
 
 	@org.testng.annotations.Test
 	public void sampleTest() throws InterruptedException {
-		System.out.println("test case 2");
+		System.out.println("test case 3");
 		// SeleniumFunctions.wait4ElementtobeDisplayed("HomePage.LoadingGif");
 
 		driver = SeleniumFunctions.openBrowser();
@@ -100,33 +100,6 @@ public class TestCase2 {
 		// etc ) should be of the selected dress only
 		boolean verifyElementText1 = SeleniumFunctions.verifyElementText("HomePage.SubTotal",
 				objCurrentEnv.dress1Price);
-
-		// 11) Click on add an alternative
-		SeleniumFunctions.clickObject("HomePage.AddAlternativeLink");
-		SeleniumFunctions.wait4ElementtobeDisplayed("HomePage.LoadingGif");
-
-		TestCaseUtilities.pageDownMultipleTimes(actions, 15);
-		SeleniumFunctions.wait4ElementtobeDisplayed("HomePage.LoadingGif");
-		// Thread.sleep(3000);
-
-		// 12) Click on Jena Gown
-		// SeleniumFunctions.clickObject("HomePage.JennaGown");
-		// String[] locatorValues =
-		// Utilities.getLocatorValues("HomePage.DressLink");
-		By byLocatorDress2 = SeleniumFunctions.byLocator(locatorValues[0], locatorValues[1], objCurrentEnv.dress2Name);
-		SeleniumFunctions.clickObject(byLocatorDress2);
-
-		SeleniumFunctions.wait4ElementtobeDisplayed("HomePage.LoadingGif");
-
-		// 13) Product detail should open , click on size L
-		SeleniumFunctions.clickObject("HomePage.SizeL");
-		SeleniumFunctions.wait4ElementtobeDisplayed("HomePage.LoadingGif");
-		Thread.sleep(3000);
-
-		// 14) click on add alternative
-		SeleniumFunctions.clickObject("HomePage.AddAlternativeBtn");
-		SeleniumFunctions.wait4ElementtobeDisplayed("HomePage.LoadingGif");
-		Thread.sleep(3000);
 
 		// 15) Click on login
 		SeleniumFunctions.clickObject("HomePage.Login");
@@ -205,21 +178,48 @@ public class TestCase2 {
 
 		// 24) Click on Return to the merchant site (Transaction Status should
 		// be selected as N)
-		SeleniumFunctions.enterDataSelectDropDown("HomePage.TransactionStatus", "N");
+		SeleniumFunctions.enterDataSelectDropDown("HomePage.TransactionStatus", "Y");
 
 		// 25) Success page should open with the placed order details
 		SeleniumFunctions.clickObject("HomePage.Return2Murchant");
 		Thread.sleep(3000);
-		boolean verifyElementText4 = SeleniumFunctions.verifyElementText("HomePage.PaymentError",
-				"There was an error processing your payment. Please try again");
+
+		// 26) Click on continue
+		SeleniumFunctions.clickObject("HomePage.Continue");
+		Thread.sleep(3000);
+		// 27) Select the same date for which previous order was placed
+		SeleniumFunctions.clickObject("HomePage.DateMenu");
+
+		SeleniumFunctions.clickObject(dateBy);
+		// SeleniumFunctions.clickObject("HomePage.Date30");
+		SeleniumFunctions.wait4ElementtobeDisplayed("HomePage.LoadingGif");
+		// Thread.sleep(5000);
+		Thread.sleep(3000);
+		SeleniumFunctions.clickObject("HomePage.closeSideBar");
+
+		// 28) Click on Borrow now
+		SeleniumFunctions.clickObject("HomePage.BorrowNow");
+		SeleniumFunctions.wait4ElementtobeDisplayed("HomePage.LoadingGif");
+
+		TestCaseUtilities.pageDownMultipleTimes(actions, 15);
+		Thread.sleep(3000);
+		// 4) Select Grace Skater Dress
+		SeleniumFunctions.clickObject("HomePage.GraceSkaterDress");
+		SeleniumFunctions.wait4ElementtobeDisplayed("HomePage.LoadingGif");
+
+		boolean verifyElementText4 = SeleniumFunctions.verifyElementText("HomePage.FullyBooked",
+				"fully booked on selected dates");
+		// 29) Select Size L
+		// 30) It should be not available and reserve now should be disabled
 		if (verifyElementText4) {
-			System.out.println("Order is not successfull.");
+			System.out.println("Dress is ordered successfully");
 		}
+
 	}
 
 	@AfterSuite
 	public void afterSuite() {
-		// driver.quit();
+		driver.quit();
 
 	}
 }

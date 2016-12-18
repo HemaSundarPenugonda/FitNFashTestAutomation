@@ -25,7 +25,7 @@ import com.fitnfash.common.SeleniumFunctions;
 import com.fitnfash.common.TestCaseUtilities;
 import com.fitnfash.common.Utilities;
 
-public class TestCase2 {
+public class TestCase8 {
 	public Utilities objUtility = new Utilities();
 	public CurrentEnv objCurrentEnv = new CurrentEnv();
 	WebDriver driver;
@@ -40,7 +40,7 @@ public class TestCase2 {
 
 	@org.testng.annotations.Test
 	public void sampleTest() throws InterruptedException {
-		System.out.println("test case 2");
+		System.out.println("test case 8");
 		// SeleniumFunctions.wait4ElementtobeDisplayed("HomePage.LoadingGif");
 
 		driver = SeleniumFunctions.openBrowser();
@@ -65,7 +65,8 @@ public class TestCase2 {
 		// 4) Select Grace Skater Dress
 		// SeleniumFunctions.clickObject("HomePage.GraceSkaterDress");
 		String[] locatorValues = Utilities.getLocatorValues("HomePage.DressLink");
-		By byLocatorDress1 = SeleniumFunctions.byLocator(locatorValues[0], locatorValues[1], objCurrentEnv.dress1Name);
+		By byLocatorDress1 = SeleniumFunctions.byLocator(locatorValues[0], locatorValues[1],
+				objCurrentEnv.demoDress1Name);
 		SeleniumFunctions.clickObject(byLocatorDress1);
 		SeleniumFunctions.wait4ElementtobeDisplayed("HomePage.LoadingGif");
 
@@ -88,8 +89,7 @@ public class TestCase2 {
 		Thread.sleep(3000);
 		// 7) select 7 days ahead date (if today is 1 then select 8)
 		// 8) select size M
-		SeleniumFunctions.clickObject("HomePage.SizeM");
-		SeleniumFunctions.wait4ElementtobeDisplayed("HomePage.LoadingGif");
+		SeleniumFunctions.enterDataSelectDropDown("HomePage.trailSlot", 2);
 		Thread.sleep(3000);
 
 		// 9) Click on reserve now
@@ -100,33 +100,6 @@ public class TestCase2 {
 		// etc ) should be of the selected dress only
 		boolean verifyElementText1 = SeleniumFunctions.verifyElementText("HomePage.SubTotal",
 				objCurrentEnv.dress1Price);
-
-		// 11) Click on add an alternative
-		SeleniumFunctions.clickObject("HomePage.AddAlternativeLink");
-		SeleniumFunctions.wait4ElementtobeDisplayed("HomePage.LoadingGif");
-
-		TestCaseUtilities.pageDownMultipleTimes(actions, 15);
-		SeleniumFunctions.wait4ElementtobeDisplayed("HomePage.LoadingGif");
-		// Thread.sleep(3000);
-
-		// 12) Click on Jena Gown
-		// SeleniumFunctions.clickObject("HomePage.JennaGown");
-		// String[] locatorValues =
-		// Utilities.getLocatorValues("HomePage.DressLink");
-		By byLocatorDress2 = SeleniumFunctions.byLocator(locatorValues[0], locatorValues[1], objCurrentEnv.dress2Name);
-		SeleniumFunctions.clickObject(byLocatorDress2);
-
-		SeleniumFunctions.wait4ElementtobeDisplayed("HomePage.LoadingGif");
-
-		// 13) Product detail should open , click on size L
-		SeleniumFunctions.clickObject("HomePage.SizeL");
-		SeleniumFunctions.wait4ElementtobeDisplayed("HomePage.LoadingGif");
-		Thread.sleep(3000);
-
-		// 14) click on add alternative
-		SeleniumFunctions.clickObject("HomePage.AddAlternativeBtn");
-		SeleniumFunctions.wait4ElementtobeDisplayed("HomePage.LoadingGif");
-		Thread.sleep(3000);
 
 		// 15) Click on login
 		SeleniumFunctions.clickObject("HomePage.Login");

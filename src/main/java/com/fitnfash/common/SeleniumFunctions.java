@@ -128,6 +128,24 @@ public class SeleniumFunctions {
 
 		return enterDataSelectDropDown(byLocator, selectText);
 	}
+	public static String enterDataSelectDropDown(By byLocator, int index) throws InterruptedException {
+
+		wait.until(ExpectedConditions.visibilityOfElementLocated(byLocator));
+		WebElement element = driver.findElement(byLocator);
+		Select select = new Select(element);
+		Thread.sleep(3000);
+		select.selectByIndex(index);
+		return "Selecting [" + index + "] from drop down is successfull: " + byLocator;
+
+	}
+
+	public static String enterDataSelectDropDown(String locator, int index) throws InterruptedException {
+
+		String[] locatorValues = Utilities.getLocatorValues(locator);
+		By byLocator = byLocator(locatorValues[0], locatorValues[1]);
+
+		return enterDataSelectDropDown(byLocator, index);
+	}
 	public static boolean wait4ElementtobeDisplayed(String locator) {
 
 		String[] locatorValues = Utilities.getLocatorValues(locator);

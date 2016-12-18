@@ -35,12 +35,7 @@ public class TestCase1 {
 
 		objUtility.loadProperties();
 		objUtility.loadObjRepo();
-		objCurrentEnv.browserName = objUtility.allPropMap.get("browser");
-		objCurrentEnv.url = objUtility.allPropMap.get("url");
-		objCurrentEnv.dress1Name = objUtility.allPropMap.get("Dress1.name");
-		objCurrentEnv.dress1Price = objUtility.allPropMap.get("Dress1.price");
-		objCurrentEnv.dress2Name = objUtility.allPropMap.get("Dress2.name");
-		objCurrentEnv.totalDresses = objUtility.allPropMap.get("TotalDresses");
+		TestCaseUtilities.assignEnv(objCurrentEnv, objUtility);
 	}
 
 	@org.testng.annotations.Test
@@ -223,7 +218,7 @@ public class TestCase1 {
 		SeleniumFunctions.clickObject("HomePage.DateMenu");
 
 		SeleniumFunctions.clickObject(dateBy);
-//		SeleniumFunctions.clickObject("HomePage.Date30");
+		// SeleniumFunctions.clickObject("HomePage.Date30");
 		SeleniumFunctions.wait4ElementtobeDisplayed("HomePage.LoadingGif");
 		// Thread.sleep(5000);
 		Thread.sleep(3000);

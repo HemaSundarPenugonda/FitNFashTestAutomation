@@ -1,0 +1,9 @@
+<suite name="FitNFash" verbose="1">
+    <tests>
+        <test name="TestCase1">
+            <classes>
+                <class name="seleniumPOC.TestCase1"/>
+            </classes>
+        </test>
+    </tests>
+</suite>

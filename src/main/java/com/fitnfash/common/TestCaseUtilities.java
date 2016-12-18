@@ -36,7 +36,7 @@ public class TestCaseUtilities {
 		String actualMonth = driver.findElements(calMonthBy).get(0).getText();
 		String actualYear = driver.findElements(calMonthBy).get(1).getText();
 
-		String[] locatorValues1 = Utilities.getLocatorValues(calMonth);
+		String[] locatorValues1 = Utilities.getLocatorValues(calNext);
 		By calNextBy = SeleniumFunctions.byLocator(locatorValues1[0], locatorValues1[1]);
 
 		if (!(actualMonth.equalsIgnoreCase(expectedMonth) && actualYear.equalsIgnoreCase(expectedYear))) {
@@ -45,5 +45,15 @@ public class TestCaseUtilities {
 		}
 		return expectedDate;
 
+	}
+	public static void assignEnv(CurrentEnv objCurrentEnv, Utilities objUtility) {
+		objCurrentEnv.browserName = objUtility.allPropMap.get("browser");
+		objCurrentEnv.url = objUtility.allPropMap.get("url");
+		objCurrentEnv.dress1Name = objUtility.allPropMap.get("Dress1.name");
+		objCurrentEnv.dress1Price = objUtility.allPropMap.get("Dress1.price");
+		objCurrentEnv.dress2Name = objUtility.allPropMap.get("Dress2.name");
+		objCurrentEnv.totalDresses = objUtility.allPropMap.get("TotalDresses");
+		objCurrentEnv.demoDress1Name = objUtility.allPropMap.get("DemoDress1.name");
+		objCurrentEnv.demoDress2Name = objUtility.allPropMap.get("DemoDress2.name");
 	}
 }

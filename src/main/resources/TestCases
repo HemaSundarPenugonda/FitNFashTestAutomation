@@ -14,10 +14,10 @@ Complete flows:
  
 Independent flows:
 9) Do we need any test cases around Delivery charge ?
-10) Can we check the sorting in main scren (Eg: sort by price)
+10) Can we check the sorting in main screen (Eg: sort by price)
 11) Check whether all the dress links are working or not.
 12) Check for any broken links in home page & in one of the dress details page.
-13) Check whether the insurence amount is same as main dress rent or not.
+13) Check whether the insurance amount is same as main dress rent or not. XXXXXXXXXXXXXX
 14) Check Only next 1 month dates should be enabled/available to select for dress booking.
 15) Check dresses count in each category.
 16) Check whether on clearing the event date, Cart is empty or not.
