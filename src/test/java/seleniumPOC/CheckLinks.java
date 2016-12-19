@@ -20,14 +20,14 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 
 import com.fitnfash.common.SeleniumFunctions;
 
-public class CheckAllLinks {
+public class CheckLinks {
 
 	private final static String USER_AGENT = "Mozilla/5.0";
 	static List<String> brokenLinkList = new ArrayList<String>();
-	static ArrayList<String> allLinksSet = new ArrayList<>();
+	static ArrayList<String> allLinksSet = new ArrayList<>(500);
 
 	public static void main(String[] args) throws InterruptedException, IOException {
-		int invalidLinksCount = 0;
+//		int invalidLinksCount = 0;
 
 		WebDriver driver = SeleniumFunctions.openBrowser(20);
 		driver.get("http://fit91485.fitnfash.com/");
@@ -48,33 +48,33 @@ public class CheckAllLinks {
 		for (int i = 0; i < allLinksSet.size(); i++) {
 			String currentURL = allLinksSet.get(i);
 
-			if (currentURL.toLowerCase().contains("fitnfash.com")) {
-				CloseableHttpClient client = HttpClientBuilder.create().build();
-				HttpGet request = new HttpGet(currentURL);
+			// if (currentURL.toLowerCase().contains("fitnfash.com")) {
+			CloseableHttpClient client = HttpClientBuilder.create().build();
+			HttpGet request = new HttpGet(currentURL);
 
-				HttpResponse response = null;
-				try {
-					response = client.execute(request);
-				} catch (IOException e) {
-					e.printStackTrace();
-				}
-
-				int statusCode = response.getStatusLine().getStatusCode();
-				if (statusCode != 200) {
-					System.out.println("Broken URL: " + currentURL);
-					invalidLinksCount++;
-					brokenLinkList.add(currentURL);
-				}
-				client.close();
+			HttpResponse response = null;
+			try {
+				response = client.execute(request);
+			} catch (IOException e) {
+				e.printStackTrace();
 			}
-			
+
+			int statusCode = response.getStatusLine().getStatusCode();
+			if (statusCode != 200) {
+				System.out.println("Broken URL: " + currentURL);
+//				invalidLinksCount++;
+				brokenLinkList.add(currentURL);
+			}
+			client.close();
+			// }
+
 		}
-		System.out.println("Total no. of invalid links are " + invalidLinksCount + " and they are:" + brokenLinkList);
-		if (invalidLinksCount == 0) {
+		
+		if (brokenLinkList.size() == 0) {
 			System.out.println("All the links on the page are valid.");
 
 		} else {
-
+			System.out.println("Total no. of invalid links are " + brokenLinkList.size() + " and they are: " + brokenLinkList);
 		}
 
 	}
@@ -89,10 +89,11 @@ public class CheckAllLinks {
 					System.out.println("Exception : " + e);
 
 				}
-				if (url != null && !url.contains("javascript") && !url.contains("@fitnfash.com") && url.startsWith("http://fit91485.fitnfash.com")) {
+				if (url != null && !url.contains("javascript") && !url.contains("@fitnfash.com")
+						&& url.startsWith("http://fit91485.fitnfash.com")) {
 					boolean add = check4DuplicateAndAddElement(allLinksSet, url);
 				} else {
-					System.out.println("Invalid URL" + url);
+					System.out.println("Invalid URL: " + url);
 				}
 
 			}
@@ -129,11 +130,13 @@ public class CheckAllLinks {
 
 	}
 
-	public static boolean check4DuplicateAndAddElement(ArrayList<String> list, String str) {
-		if (!list.contains(str)) {
-			list.add(str);
+	public static boolean check4DuplicateAndAddElement(ArrayList<String> list, String href) {
+		if (!list.contains(href)) {
+			list.add(href);
+			System.out.println("Link added: " + href);
 			return true;
 		}
+		System.out.println("Duplicate link: " + href);
 		return false;
 
 	}

@@ -1,0 +1,9 @@
+<suite name="FitNFash" verbose="1">
+    <tests>
+        <test name="CheckLinks">
+            <classes>
+                <class name="seleniumPOC.CheckLinks"/>
+            </classes>
+        </test>
+    </tests>
+</suite>
