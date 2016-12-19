@@ -54,7 +54,7 @@ public class SeleniumFunctions {
 		try {
 			String pathname = baseDir + "/screenShot/test.png";
 			FileUtils.copyFile(src, new File(pathname));
-			System.out.println("Screen shot copied to "+pathname);
+			System.out.println("Screen shot copied to " + pathname);
 		} catch (IOException e) {
 			System.out.println(e.getMessage());
 
@@ -63,14 +63,10 @@ public class SeleniumFunctions {
 	}
 
 	public static void clickObject(String locator) throws InterruptedException {
-		try {
-			String[] locatorValues = Utilities.getLocatorValues(locator);
-			clickObject(locatorValues[0], locatorValues[1]);
-			System.out.println("Click on Object successfull : " + locator);
-		} catch (Exception e) {
-			saveScreenshot();
-			throw e;
-		}
+		String[] locatorValues = Utilities.getLocatorValues(locator);
+		clickObject(locatorValues[0], locatorValues[1]);
+		System.out.println("Click on Object successfull : " + locator);
+
 	}
 
 	public static void clickObject(String locatorType, String locatorValue) throws InterruptedException {
@@ -79,10 +75,15 @@ public class SeleniumFunctions {
 	}
 
 	public static void clickObject(By borrowNowBy) throws InterruptedException {
-		wait.until(ExpectedConditions.elementToBeClickable(borrowNowBy));
-		WebElement borrowNow = driver.findElement(borrowNowBy);
-		Thread.sleep(1000);
-		borrowNow.click();
+		try {
+			wait.until(ExpectedConditions.elementToBeClickable(borrowNowBy));
+			WebElement borrowNow = driver.findElement(borrowNowBy);
+			Thread.sleep(1000);
+			borrowNow.click();
+		} catch (Exception e) {
+			saveScreenshot();
+			throw e;
+		}
 	}
 
 	public static boolean verifyElementText(String locator, String expected) {
