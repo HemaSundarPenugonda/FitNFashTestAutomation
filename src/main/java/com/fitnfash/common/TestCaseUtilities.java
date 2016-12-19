@@ -21,6 +21,13 @@ public class TestCaseUtilities {
 		}
 	}
 
+	public static void pageUpMultipleTimes(Actions actions, int count) throws InterruptedException {
+		for (int i = 0; i < count; i++) {
+			actions.sendKeys(Keys.PAGE_UP).build().perform();
+			Thread.sleep(1000);
+		}
+	}
+	
 	public static String selectDate(WebDriver driver, String calMonth, String calNext) throws InterruptedException {
 
 		Calendar timeInstance = Calendar.getInstance();

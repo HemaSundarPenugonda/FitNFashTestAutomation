@@ -58,7 +58,8 @@ public class TestCase2 {
 		boolean verifyElementText = SeleniumFunctions.verifyElementText("HomePage.ResultCount",
 				objCurrentEnv.totalDresses);
 
-		TestCaseUtilities.pageDownMultipleTimes(actions, 2);
+		TestCaseUtilities.pageDownMultipleTimes(actions, 15);
+		TestCaseUtilities.pageUpMultipleTimes(actions, 15);
 		SeleniumFunctions.wait4ElementtobeDisplayed("HomePage.LoadingGif");
 //		Thread.sleep(3000);
 
