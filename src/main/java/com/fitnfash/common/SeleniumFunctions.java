@@ -52,7 +52,9 @@ public class SeleniumFunctions {
 		// Take screenshot and store as a file format
 		File src = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
 		try {
-			FileUtils.copyFile(src, new File(baseDir + "/screenShot/test.png"));
+			String pathname = baseDir + "/screenShot/test.png";
+			FileUtils.copyFile(src, new File(pathname));
+			System.out.println("Screen shot copied to "+pathname);
 		} catch (IOException e) {
 			System.out.println(e.getMessage());
 
