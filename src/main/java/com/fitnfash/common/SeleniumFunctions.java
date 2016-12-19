@@ -68,7 +68,7 @@ public class SeleniumFunctions {
 			clickObject(locatorValues[0], locatorValues[1]);
 			System.out.println("Click on Object successfull : " + locator);
 		} catch (Exception e) {
-
+			saveScreenshot();
 			throw e;
 		}
 	}
