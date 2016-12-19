@@ -100,12 +100,17 @@ public class SeleniumFunctions {
 	}
 
 	public static void enterKeys(String locator, String value) {
-		String[] locatorValues = Utilities.getLocatorValues(locator);
-		By borrowNowBy = byLocator(locatorValues[0], locatorValues[1]);
-		wait.until(ExpectedConditions.visibilityOfElementLocated(borrowNowBy));
-		WebElement borrowNow = driver.findElement(borrowNowBy);
-		borrowNow.sendKeys(value);
-		System.out.println("Entering text in the filed is successfull : " + locator);
+		try {
+			String[] locatorValues = Utilities.getLocatorValues(locator);
+			By borrowNowBy = byLocator(locatorValues[0], locatorValues[1]);
+			wait.until(ExpectedConditions.visibilityOfElementLocated(borrowNowBy));
+			WebElement borrowNow = driver.findElement(borrowNowBy);
+			borrowNow.sendKeys(value);
+			System.out.println("Entering text in the filed is successfull : " + locator);
+		} catch (Exception e) {
+			saveScreenshot();
+			throw e;
+		}
 
 	}
 
