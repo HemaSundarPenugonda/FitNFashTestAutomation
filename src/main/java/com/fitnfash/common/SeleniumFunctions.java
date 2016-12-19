@@ -1,8 +1,13 @@
 package com.fitnfash.common;
 
 import java.io.File;
+import java.io.IOException;
+import java.nio.file.Files;
 
+import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.By;
+import org.openqa.selenium.OutputType;
+import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.firefox.FirefoxBinary;
@@ -12,6 +17,7 @@ import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.annotations.Test;
 
 public class SeleniumFunctions {
 	public static WebDriver driver;
@@ -25,8 +31,9 @@ public class SeleniumFunctions {
 		// "/home/hemasundar/Apps/geckodriver");
 		System.setProperty("webdriver.firefox.marionette", "false");
 
-		 FirefoxBinary binary = new FirefoxBinary(new File("/home/hema/firefox-sdk/bin/firefox"));
-//		 FirefoxBinary binary = new FirefoxBinary(new File("/home/hemasundar/Apps/firefox/firefox"));
+		FirefoxBinary binary = new FirefoxBinary(new File("/home/hema/firefox-sdk/bin/firefox"));
+		// FirefoxBinary binary = new FirefoxBinary(new
+		// File("/home/hemasundar/Apps/firefox/firefox"));
 		System.out.println("fire fox binary path set successfully.");
 		// GeckoDriverService createDefaultService =
 		// GeckoDriverService.createDefaultService();
@@ -42,10 +49,28 @@ public class SeleniumFunctions {
 
 	}
 
+	public static void saveScreenshot() {
+		String baseDir = System.getProperty("user.dir");
+		// Take screenshot and store as a file format
+		File src = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
+		try {
+			FileUtils.copyFile(src, new File(baseDir + "/screenShot/test.png"));
+		} catch (IOException e) {
+			System.out.println(e.getMessage());
+
+		}
+
+	}
+
 	public static void clickObject(String locator) throws InterruptedException {
-		String[] locatorValues = Utilities.getLocatorValues(locator);
-		clickObject(locatorValues[0], locatorValues[1]);
-		System.out.println("Click on Object successfull : "+locator);
+		try {
+			String[] locatorValues = Utilities.getLocatorValues(locator);
+			clickObject(locatorValues[0], locatorValues[1]);
+			System.out.println("Click on Object successfull : " + locator);
+		} catch (Exception e) {
+
+			throw e;
+		}
 	}
 
 	public static void clickObject(String locatorType, String locatorValue) throws InterruptedException {
@@ -79,7 +104,7 @@ public class SeleniumFunctions {
 		wait.until(ExpectedConditions.visibilityOfElementLocated(borrowNowBy));
 		WebElement borrowNow = driver.findElement(borrowNowBy);
 		borrowNow.sendKeys(value);
-		System.out.println("Entering text in the filed is successfull : "+locator);
+		System.out.println("Entering text in the filed is successfull : " + locator);
 
 	}
 
@@ -102,6 +127,7 @@ public class SeleniumFunctions {
 		return byLocator;
 
 	}
+
 	public static By byLocator(String locatorType, String locatorValue, String data) {
 		locatorValue = locatorValue.replace("${data}", data);
 		return byLocator(locatorType, locatorValue);
@@ -126,6 +152,7 @@ public class SeleniumFunctions {
 
 		return enterDataSelectDropDown(byLocator, selectText);
 	}
+
 	public static String enterDataSelectDropDown(By byLocator, int index) throws InterruptedException {
 
 		wait.until(ExpectedConditions.visibilityOfElementLocated(byLocator));
@@ -144,6 +171,7 @@ public class SeleniumFunctions {
 
 		return enterDataSelectDropDown(byLocator, index);
 	}
+
 	public static boolean wait4ElementtobeDisplayed(String locator) {
 
 		String[] locatorValues = Utilities.getLocatorValues(locator);
@@ -155,6 +183,7 @@ public class SeleniumFunctions {
 		wait.until(ExpectedConditions.presenceOfAllElementsLocatedBy(borrowNowBy));
 		return true;
 	}
+
 	public static void clickObjectWIthOutWait(String locator) throws InterruptedException {
 		String[] locatorValues = Utilities.getLocatorValues(locator);
 		clickObjectWIthOutWait(locatorValues[0], locatorValues[1]);
