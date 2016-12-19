@@ -27,7 +27,7 @@ public class CheckLinks {
 	static ArrayList<String> allLinksSet = new ArrayList<>(500);
 
 	@org.testng.annotations.Test
-	public void sampleTest() throws InterruptedException {
+	public void sampleTest() throws InterruptedException, IOException {
 		// int invalidLinksCount = 0;
 
 		WebDriver driver = SeleniumFunctions.openBrowser(20);
