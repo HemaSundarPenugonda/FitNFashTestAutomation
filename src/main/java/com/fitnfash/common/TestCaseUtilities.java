@@ -17,6 +17,7 @@ public class TestCaseUtilities {
 	public static void pageDownMultipleTimes(Actions actions, int count) throws InterruptedException {
 		for (int i = 0; i < count; i++) {
 			actions.sendKeys(Keys.PAGE_DOWN).build().perform();
+			System.out.println("page down successful");
 			Thread.sleep(1000);
 		}
 	}
@@ -24,10 +25,11 @@ public class TestCaseUtilities {
 	public static void pageUpMultipleTimes(Actions actions, int count) throws InterruptedException {
 		for (int i = 0; i < count; i++) {
 			actions.sendKeys(Keys.PAGE_UP).build().perform();
+			System.out.println("page up successful");
 			Thread.sleep(1000);
 		}
 	}
-	
+
 	public static String selectDate(WebDriver driver, String calMonth, String calNext) throws InterruptedException {
 
 		Calendar timeInstance = Calendar.getInstance();
@@ -53,27 +55,28 @@ public class TestCaseUtilities {
 		return expectedDate;
 
 	}
+
 	public static void assignEnv(CurrentEnv objCurrentEnv, Utilities objUtility) {
 		objCurrentEnv.browserName = objUtility.allPropMap.get("browser");
 		objCurrentEnv.url = objUtility.allPropMap.get("url");
 		objCurrentEnv.maxTimeout = objUtility.allPropMap.get("MaximumTimeout");
 		objCurrentEnv.totalDresses = objUtility.allPropMap.get("TotalDresses");
-		
+
 		objCurrentEnv.dress1Name = objUtility.allPropMap.get("Dress1.name");
 		objCurrentEnv.dress1Price = objUtility.allPropMap.get("Dress1.price");
 		objCurrentEnv.dress1Size = objUtility.allPropMap.get("Dress1.size");
-		
+
 		objCurrentEnv.dress2Name = objUtility.allPropMap.get("Dress2.name");
 		objCurrentEnv.dress2Price = objUtility.allPropMap.get("Dress2.price");
 		objCurrentEnv.dress2Size = objUtility.allPropMap.get("Dress2.size");
-		
+
 		objCurrentEnv.demoDress1Name = objUtility.allPropMap.get("DemoDress1.name");
 		objCurrentEnv.demoDress1Price = objUtility.allPropMap.get("DemoDress1.price");
 		objCurrentEnv.demoDress1Size = objUtility.allPropMap.get("DemoDress1.size");
-		
+
 		objCurrentEnv.demoDress2Name = objUtility.allPropMap.get("DemoDress2.name");
 		objCurrentEnv.demoDress2Price = objUtility.allPropMap.get("DemoDress2.price");
 		objCurrentEnv.demoDress2Size = objUtility.allPropMap.get("DemoDress2.size");
-		
+
 	}
 }
