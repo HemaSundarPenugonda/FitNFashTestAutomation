@@ -26,8 +26,9 @@ public class CheckLinks {
 	static List<String> brokenLinkList = new ArrayList<String>();
 	static ArrayList<String> allLinksSet = new ArrayList<>(500);
 
-	public static void main(String[] args) throws InterruptedException, IOException {
-//		int invalidLinksCount = 0;
+	@org.testng.annotations.Test
+	public void sampleTest() throws InterruptedException {
+		// int invalidLinksCount = 0;
 
 		WebDriver driver = SeleniumFunctions.openBrowser(20);
 		driver.get("http://fit91485.fitnfash.com/");
@@ -62,19 +63,20 @@ public class CheckLinks {
 			int statusCode = response.getStatusLine().getStatusCode();
 			if (statusCode != 200) {
 				System.out.println("Broken URL: " + currentURL);
-//				invalidLinksCount++;
+				// invalidLinksCount++;
 				brokenLinkList.add(currentURL);
 			}
 			client.close();
 			// }
 
 		}
-		
+
 		if (brokenLinkList.size() == 0) {
 			System.out.println("All the links on the page are valid.");
 
 		} else {
-			System.out.println("Total no. of invalid links are " + brokenLinkList.size() + " and they are: " + brokenLinkList);
+			System.out.println(
+					"Total no. of invalid links are " + brokenLinkList.size() + " and they are: " + brokenLinkList);
 		}
 
 	}
