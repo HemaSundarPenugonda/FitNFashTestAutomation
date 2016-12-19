@@ -62,6 +62,21 @@ public class SeleniumFunctions {
 
 	}
 
+	public static void saveScreenshot(String name) {
+		String baseDir = System.getProperty("user.dir");
+		// Take screenshot and store as a file format
+		File src = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
+		try {
+			String pathname = baseDir + "/screenShot/" + name + ".png";
+			FileUtils.copyFile(src, new File(pathname));
+			System.out.println("Screen shot copied to " + pathname);
+		} catch (IOException e) {
+			System.out.println(e.getMessage());
+
+		}
+
+	}
+
 	public static void clickObject(String locator) throws InterruptedException {
 		String[] locatorValues = Utilities.getLocatorValues(locator);
 		clickObject(locatorValues[0], locatorValues[1]);
