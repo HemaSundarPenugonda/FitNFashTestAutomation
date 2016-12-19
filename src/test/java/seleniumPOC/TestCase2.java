@@ -61,7 +61,7 @@ public class TestCase2 {
 		TestCaseUtilities.pageDownMultipleTimes(actions, 15);
 		TestCaseUtilities.pageUpMultipleTimes(actions, 15);
 		SeleniumFunctions.wait4ElementtobeDisplayed("HomePage.LoadingGif");
-//		Thread.sleep(3000);
+		Thread.sleep(3000);
 
 		// 4) Select Grace Skater Dress
 		// SeleniumFunctions.clickObject("HomePage.GraceSkaterDress");
