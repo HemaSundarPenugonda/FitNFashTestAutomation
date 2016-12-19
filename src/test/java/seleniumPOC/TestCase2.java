@@ -85,7 +85,7 @@ public class TestCase2 {
 		SeleniumFunctions.wait4ElementtobeDisplayed("HomePage.LoadingGif");
 		Thread.sleep(5000);
 
-		SeleniumFunctions.clickObject("HomePage.closeSideBar");
+//		SeleniumFunctions.clickObject("HomePage.closeSideBar");
 		Thread.sleep(3000);
 		// 7) select 7 days ahead date (if today is 1 then select 8)
 		// 8) select size M
