@@ -159,7 +159,8 @@ public class TestCase2 {
 
 		SeleniumFunctions.enterKeys("HomePage.password", "*14Myself*");
 		SeleniumFunctions.clickObject("HomePage.signIn");
-
+		Thread.sleep(3000);
+		
 		Set<String> windowsHandles1 = driver.getWindowHandles();
 		Iterator<String> iterator2 = windowsHandles1.iterator();
 
