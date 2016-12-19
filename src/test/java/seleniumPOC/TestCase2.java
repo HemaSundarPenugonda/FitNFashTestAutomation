@@ -60,7 +60,7 @@ public class TestCase2 {
 
 		TestCaseUtilities.pageDownMultipleTimes(actions, 15);
 		SeleniumFunctions.wait4ElementtobeDisplayed("HomePage.LoadingGif");
-		// Thread.sleep(3000);
+		Thread.sleep(3000);
 
 		// 4) Select Grace Skater Dress
 		// SeleniumFunctions.clickObject("HomePage.GraceSkaterDress");
@@ -95,9 +95,8 @@ public class TestCase2 {
 		} else if (objCurrentEnv.dress1Size.equalsIgnoreCase("L")) {
 			SeleniumFunctions.clickObject("HomePage.SizeL");
 			SeleniumFunctions.wait4ElementtobeDisplayed("HomePage.LoadingGif");
-			Thread.sleep(3000);	
+			Thread.sleep(3000);
 		}
-		
 
 		// 9) Click on reserve now
 		SeleniumFunctions.clickObject("HomePage.ReserveNow");
@@ -133,7 +132,7 @@ public class TestCase2 {
 		} else if (objCurrentEnv.dress2Size.equalsIgnoreCase("L")) {
 			SeleniumFunctions.clickObject("HomePage.SizeL");
 			SeleniumFunctions.wait4ElementtobeDisplayed("HomePage.LoadingGif");
-			Thread.sleep(3000);	
+			Thread.sleep(3000);
 		}
 
 		// 14) click on add alternative
