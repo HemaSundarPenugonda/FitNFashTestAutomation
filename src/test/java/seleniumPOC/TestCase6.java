@@ -121,10 +121,10 @@ public class TestCase6 {
 		WebDriver window = driver.switchTo().window(next);
 		System.out.println(driver.getTitle());
 
-		SeleniumFunctions.enterKeys("HomePage.EmailAddress", "p.hemasundar@gmail.com");
+		SeleniumFunctions.enterKeys("HomePage.EmailAddress", objCurrentEnv.gmailUserName);
 		SeleniumFunctions.clickObject("HomePage.Next");
 
-		SeleniumFunctions.enterKeys("HomePage.password", "*14Myself*");
+		SeleniumFunctions.enterKeys("HomePage.password", objCurrentEnv.gmailPassword);
 		SeleniumFunctions.clickObject("HomePage.signIn");
 
 		Set<String> windowsHandles1 = driver.getWindowHandles();

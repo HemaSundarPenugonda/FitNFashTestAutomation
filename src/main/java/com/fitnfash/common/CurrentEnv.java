@@ -18,4 +18,6 @@ public class CurrentEnv {
 	public String demoDress2Price;
 	public String demoDress2Size;
 	public String maxTimeout;
+	public String gmailUserName;
+	public String gmailPassword;
 }

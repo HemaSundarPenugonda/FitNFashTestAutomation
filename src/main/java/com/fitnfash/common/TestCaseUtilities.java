@@ -78,5 +78,7 @@ public class TestCaseUtilities {
 		objCurrentEnv.demoDress2Price = objUtility.allPropMap.get("DemoDress2.price");
 		objCurrentEnv.demoDress2Size = objUtility.allPropMap.get("DemoDress2.size");
 
+		objCurrentEnv.gmailUserName = objUtility.allPropMap.get("gmail.UserName");
+		objCurrentEnv.gmailPassword = objUtility.allPropMap.get("gmail.Password");
 	}
 }
