@@ -22,3 +22,13 @@
 			$ mvn clean test -Dtestcase=alltestcase
 		3. To execute a specific test case, enter following command and click enter:
 			$ mvn clean test -Dtestcase=testcase1
+			
+## Setup headless browser
+	1. Install vnc server on jenkins slaves where you want to execute the headless test cases
+	2. Install Xvnc plugin in jenkins
+	3. In jenkin's job configure page, select Xvnc option.
+
+## How to see the execution going on in browser?
+	1. In Jenkins job's console log page, you can check the display port number alloted for the current build execution.
+	2. Connect to the display through VNC viewer.
+		syntax: <serverAddress>:59<displayNumber>
