@@ -159,7 +159,7 @@ public class TestCase2 {
 		SeleniumFunctions.enterKeys("HomePage.password", objCurrentEnv.gmailPassword);
 		SeleniumFunctions.clickObject("HomePage.signIn");
 //		Thread.sleep(3000);
-		SeleniumFunctions.saveScreenshot("test1");
+//		SeleniumFunctions.saveScreenshot("test1");
 		Set<String> windowsHandles1 = driver.getWindowHandles();
 		Iterator<String> iterator2 = windowsHandles1.iterator();
 
