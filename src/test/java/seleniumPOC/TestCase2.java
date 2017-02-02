@@ -31,11 +31,9 @@ public class TestCase2 {
 	WebDriver driver;
 
 	@BeforeSuite
-	public void beforeSuite() {
+	public void beforeSuite() throws InterruptedException {
 
-		objUtility.loadProperties();
-		objUtility.loadObjRepo();
-		TestCaseUtilities.assignEnv(objCurrentEnv, objUtility);
+		TestCaseUtilities.beforeSuiteMethod(objUtility, objCurrentEnv);
 	}
 
 	@org.testng.annotations.Test
@@ -60,7 +58,7 @@ public class TestCase2 {
 
 		TestCaseUtilities.pageDownMultipleTimes(actions, 15);
 		SeleniumFunctions.wait4ElementtobeDisplayed("HomePage.LoadingGif");
-//		Thread.sleep(3000);
+		// Thread.sleep(3000);
 
 		// 4) Select Grace Skater Dress
 		// SeleniumFunctions.clickObject("HomePage.GraceSkaterDress");
@@ -84,7 +82,7 @@ public class TestCase2 {
 		SeleniumFunctions.wait4ElementtobeDisplayed("HomePage.LoadingGif");
 		Thread.sleep(5000);
 
-//		SeleniumFunctions.clickObject("HomePage.closeSideBar");
+		// SeleniumFunctions.clickObject("HomePage.closeSideBar");
 		Thread.sleep(3000);
 		// 7) select 7 days ahead date (if today is 1 then select 8)
 		// 8) select size M
@@ -158,8 +156,8 @@ public class TestCase2 {
 
 		SeleniumFunctions.enterKeys("HomePage.password", objCurrentEnv.gmailPassword);
 		SeleniumFunctions.clickObject("HomePage.signIn");
-//		Thread.sleep(3000);
-//		SeleniumFunctions.saveScreenshot("test1");
+		// Thread.sleep(3000);
+		// SeleniumFunctions.saveScreenshot("test1");
 		Set<String> windowsHandles1 = driver.getWindowHandles();
 		Iterator<String> iterator2 = windowsHandles1.iterator();
 

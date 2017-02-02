@@ -20,4 +20,17 @@ public class CurrentEnv {
 	public String maxTimeout;
 	public String gmailUserName;
 	public String gmailPassword;
+	
+	public String dbHostName;
+	public String dbPort;
+	public String dbName;
+	public String dbUserName;
+	public String dbPassword;
+	public String dbResourceFolder;
+	public String dbSchemaFile;
+	public String dbInsertFile;
+	
+	public String adminURL;
+	public String adminUserName;
+	public String adminPassword;
 }

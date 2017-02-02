@@ -31,11 +31,9 @@ public class TestCase6 {
 	WebDriver driver;
 
 	@BeforeSuite
-	public void beforeSuite() {
+	public void beforeSuite() throws InterruptedException {
 
-		objUtility.loadProperties();
-		objUtility.loadObjRepo();
-		TestCaseUtilities.assignEnv(objCurrentEnv, objUtility);
+		TestCaseUtilities.beforeSuiteMethod(objUtility, objCurrentEnv);
 	}
 
 	@org.testng.annotations.Test
@@ -65,7 +63,8 @@ public class TestCase6 {
 		// 4) Select Grace Skater Dress
 		// SeleniumFunctions.clickObject("HomePage.GraceSkaterDress");
 		String[] locatorValues = Utilities.getLocatorValues("HomePage.DressLink");
-		By byLocatorDress1 = SeleniumFunctions.byLocator(locatorValues[0], locatorValues[1], objCurrentEnv.demoDress1Name);
+		By byLocatorDress1 = SeleniumFunctions.byLocator(locatorValues[0], locatorValues[1],
+				objCurrentEnv.demoDress1Name);
 		SeleniumFunctions.clickObject(byLocatorDress1);
 		SeleniumFunctions.wait4ElementtobeDisplayed("HomePage.LoadingGif");
 
@@ -95,7 +94,7 @@ public class TestCase6 {
 		} else if (objCurrentEnv.demoDress1Size.equalsIgnoreCase("L")) {
 			SeleniumFunctions.clickObject("HomePage.SizeL");
 			SeleniumFunctions.wait4ElementtobeDisplayed("HomePage.LoadingGif");
-			Thread.sleep(3000);	
+			Thread.sleep(3000);
 		}
 		SeleniumFunctions.enterDataSelectDropDown("HomePage.trailSlot", 2);
 

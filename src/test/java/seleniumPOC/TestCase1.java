@@ -31,11 +31,10 @@ public class TestCase1 {
 	WebDriver driver;
 
 	@BeforeSuite
-	public void beforeSuite() {
+	public void beforeSuite() throws InterruptedException {
 
-		objUtility.loadProperties();
-		objUtility.loadObjRepo();
-		TestCaseUtilities.assignEnv(objCurrentEnv, objUtility);
+		TestCaseUtilities.beforeSuiteMethod(objUtility, objCurrentEnv);
+
 	}
 
 	@org.testng.annotations.Test
@@ -95,7 +94,7 @@ public class TestCase1 {
 		} else if (objCurrentEnv.dress1Size.equalsIgnoreCase("L")) {
 			SeleniumFunctions.clickObject("HomePage.SizeL");
 			SeleniumFunctions.wait4ElementtobeDisplayed("HomePage.LoadingGif");
-			Thread.sleep(3000);	
+			Thread.sleep(3000);
 		}
 
 		// 9) Click on reserve now
@@ -132,7 +131,7 @@ public class TestCase1 {
 		} else if (objCurrentEnv.dress2Size.equalsIgnoreCase("L")) {
 			SeleniumFunctions.clickObject("HomePage.SizeL");
 			SeleniumFunctions.wait4ElementtobeDisplayed("HomePage.LoadingGif");
-			Thread.sleep(3000);	
+			Thread.sleep(3000);
 		}
 
 		// 14) click on add alternative

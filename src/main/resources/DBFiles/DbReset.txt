@@ -1,0 +1,17 @@
+Please find the following process as part of setup to put the system in default state.
+
+1) execute
+schema.sql
+insert-data.sql
+
+2) login to admin
+go to catalog setting
+click slide availability button
+click rebuild index button
+
+credentials for mysql:
+	hostname : 138.201.175.186
+	port : 3306
+	database : broadleaf
+	username : root
+	password : fitnfash@2015

@@ -29,7 +29,7 @@ public class SeleniumFunctions {
 		// "/home/hemasundar/Apps/geckodriver");
 		System.setProperty("webdriver.firefox.marionette", "false");
 
-		FirefoxBinary binary = new FirefoxBinary(new File("/home/hema/firefox-sdk/bin/firefox"));
+//		FirefoxBinary binary = new FirefoxBinary(new File("/home/hema/firefox-sdk/bin/firefox"));
 		// FirefoxBinary binary = new FirefoxBinary(new
 		// File("/home/hemasundar/Apps/firefox/firefox"));
 		System.out.println("fire fox binary path set successfully.");
@@ -40,7 +40,8 @@ public class SeleniumFunctions {
 		// System.out.println(createDefaultService.getUrl());
 		// System.out.println(createDefaultService.getClass());
 		// driver = new FirefoxDriver(binary, new FirefoxProfile());
-		driver = new FirefoxDriver(binary, new FirefoxProfile());
+//		driver = new FirefoxDriver(binary, new FirefoxProfile());
+		driver = new FirefoxDriver();
 		System.out.println("firefox browser launched successfully.");
 		wait = new WebDriverWait(driver, timeOut);
 		return driver;

@@ -1,11 +1,13 @@
 package com.fitnfash.common;
 
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Properties;
+import java.util.Scanner;
 import java.util.Set;
 
 import org.openqa.selenium.Keys;
@@ -56,8 +58,10 @@ public class Utilities {
 		}
 		return null;
 	}
+
 	public void loadObjRepo() {
-		HashMap<String, String> objRepoHashMap = propFile2HashMap(System.getProperty("user.dir") + "/src/main/resources/objRepo.properties");
+		HashMap<String, String> objRepoHashMap = propFile2HashMap(
+				System.getProperty("user.dir") + "/src/main/resources/objRepo.properties");
 		Set<String> keySet = objRepoHashMap.keySet();
 
 		for (String indKey : keySet) {
@@ -75,17 +79,37 @@ public class Utilities {
 
 	public void loadProperties() {
 		Properties sysProperties = System.getProperties();
-		HashMap<String, String> propFile2HashMap = propFile2HashMap(System.getProperty("user.dir") + "/src/main/resources/uiautomation.properties");
-		
+		HashMap<String, String> propFile2HashMap = propFile2HashMap(
+				System.getProperty("user.dir") + "/src/main/resources/uiautomation.properties");
+
 		HashMap<String, String> propObj2HashMap = propObj2HashMap(sysProperties);
-		
+
 		allPropMap.putAll(propFile2HashMap);
 		allPropMap.putAll(propObj2HashMap);
 	}
+
 	public void pageDownMultipleTimes(Actions actions, int count) throws InterruptedException {
 		for (int i = 0; i < count; i++) {
 			actions.sendKeys(Keys.PAGE_DOWN).build().perform();
 			Thread.sleep(1000);
 		}
+	}
+
+	public String readFile(File file) {
+
+		try {
+
+			file.getParentFile().mkdirs();
+			file.createNewFile();
+
+			Scanner scanner = new Scanner(file);
+			String str = scanner.useDelimiter("\\Z").next();
+			scanner.close();
+			return str;
+		} catch (IOException e) {
+			System.out.println("Exception occurred while creating file" + e);
+			return "";
+		}
+
 	}
 }

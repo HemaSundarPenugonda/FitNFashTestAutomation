@@ -1,11 +1,20 @@
 package com.fitnfash.common;
 
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
+import java.io.Reader;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.time.Month;
 import java.util.Calendar;
 import java.util.HashMap;
 import java.util.Properties;
 import java.util.Set;
 
+import org.apache.ibatis.jdbc.ScriptRunner;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
@@ -80,5 +89,87 @@ public class TestCaseUtilities {
 
 		objCurrentEnv.gmailUserName = objUtility.allPropMap.get("gmail.UserName");
 		objCurrentEnv.gmailPassword = objUtility.allPropMap.get("gmail.Password");
+
+		objCurrentEnv.dbHostName = objUtility.allPropMap.get("db.hostname");
+		objCurrentEnv.dbPort = objUtility.allPropMap.get("db.port");
+		objCurrentEnv.dbName = objUtility.allPropMap.get("db.name");
+		objCurrentEnv.dbUserName = objUtility.allPropMap.get("db.username");
+		objCurrentEnv.dbPassword = objUtility.allPropMap.get("db.password");
+		objCurrentEnv.dbResourceFolder = objUtility.allPropMap.get("db.resourcefolder");
+		objCurrentEnv.dbSchemaFile = objUtility.allPropMap.get("db.schemafile");
+		objCurrentEnv.dbInsertFile = objUtility.allPropMap.get("db.insertfile");
+
+		objCurrentEnv.adminURL = objUtility.allPropMap.get("admin.url");
+		objCurrentEnv.adminUserName = objUtility.allPropMap.get("admin.username");
+		objCurrentEnv.adminPassword = objUtility.allPropMap.get("admin.password");
+	}
+
+	public static void resetDB(CurrentEnv objCurrentEnv) {
+
+		Connection con = null;
+		// String url = "jdbc:mysql://138.201.175.186:3306/";
+		// String db = "broadleaf";
+		// String user = "root";
+		// String pass = "fitnfash@2015";
+		String url = "jdbc:mysql://" + objCurrentEnv.dbHostName + ":" + objCurrentEnv.dbPort + "/";
+		String db = objCurrentEnv.dbName;
+		String driver = "com.mysql.jdbc.Driver";
+		String user = objCurrentEnv.dbUserName;
+		String pass = objCurrentEnv.dbPassword;
+		try {
+			Class.forName(driver).newInstance();
+			con = DriverManager.getConnection(url + db, user, pass);
+
+			ScriptRunner sr = new ScriptRunner(con);
+
+			// Give the input file to Reader
+			Reader readerSchema = new BufferedReader(new FileReader(
+					System.getProperty("user.dir") + "/src/main/resources/DBFiles/" + objCurrentEnv.dbSchemaFile));
+			Reader readerInsertData = new BufferedReader(new FileReader(
+					System.getProperty("user.dir") + "/src/main/resources/DBFiles/" + objCurrentEnv.dbInsertFile));
+			// Execute script
+			sr.runScript(readerSchema);
+			sr.runScript(readerInsertData);
+
+		} catch (SQLException s) {
+			System.out.println("SQL code does not execute." + s);
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				con.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+
+	}
+
+	public static void reBuildIndex(CurrentEnv objCurrentEnv) throws InterruptedException {
+		WebDriver driver;
+		driver = SeleniumFunctions.openBrowser(20);
+		driver.manage().window().maximize();
+
+		driver.get(objCurrentEnv.adminURL);
+		SeleniumFunctions.enterKeys("Admin.username", objCurrentEnv.adminUserName);
+		SeleniumFunctions.enterKeys("Admin.password", objCurrentEnv.adminPassword);
+		SeleniumFunctions.clickObject("Admin.signin");
+		Thread.sleep(5000);
+		SeleniumFunctions.clickObject("Admin.CatalogSettings");
+		Thread.sleep(5000);
+		SeleniumFunctions.clickObject("Admin.SlideAvailability");
+		Thread.sleep(5000);
+		SeleniumFunctions.clickObject("Admin.RebuildIndex");
+		Thread.sleep(5000);
+		driver.quit();
+
+	}
+
+	public static void beforeSuiteMethod(Utilities objUtility, CurrentEnv objCurrentEnv) throws InterruptedException {
+		objUtility.loadProperties();
+		objUtility.loadObjRepo();
+		TestCaseUtilities.assignEnv(objCurrentEnv, objUtility);
+		TestCaseUtilities.resetDB(objCurrentEnv);
+		TestCaseUtilities.reBuildIndex(objCurrentEnv);
 	}
 }

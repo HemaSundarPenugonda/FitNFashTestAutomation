@@ -31,11 +31,9 @@ public class TestCase7 {
 	WebDriver driver;
 
 	@BeforeSuite
-	public void beforeSuite() {
+	public void beforeSuite() throws InterruptedException {
 
-		objUtility.loadProperties();
-		objUtility.loadObjRepo();
-		TestCaseUtilities.assignEnv(objCurrentEnv, objUtility);
+		TestCaseUtilities.beforeSuiteMethod(objUtility, objCurrentEnv);
 	}
 
 	@org.testng.annotations.Test
@@ -96,7 +94,7 @@ public class TestCase7 {
 		} else if (objCurrentEnv.demoDress1Size.equalsIgnoreCase("L")) {
 			SeleniumFunctions.clickObject("HomePage.SizeL");
 			SeleniumFunctions.wait4ElementtobeDisplayed("HomePage.LoadingGif");
-			Thread.sleep(3000);	
+			Thread.sleep(3000);
 		}
 		SeleniumFunctions.enterDataSelectDropDown("HomePage.trailSlot", 2);
 		Thread.sleep(3000);
@@ -136,7 +134,7 @@ public class TestCase7 {
 		} else if (objCurrentEnv.demoDress2Size.equalsIgnoreCase("L")) {
 			SeleniumFunctions.clickObject("HomePage.SizeL");
 			SeleniumFunctions.wait4ElementtobeDisplayed("HomePage.LoadingGif");
-			Thread.sleep(3000);	
+			Thread.sleep(3000);
 		}
 		// 14) click on add alternative
 		SeleniumFunctions.clickObject("HomePage.AddAlternativeBtn");
@@ -234,7 +232,7 @@ public class TestCase7 {
 
 	@AfterSuite
 	public void afterSuite() {
-		 driver.quit();
+		driver.quit();
 
 	}
 }
